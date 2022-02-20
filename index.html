@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rpg Turn</title>
+    <title>Dungeon Delvers</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <!-- Login Screen -->
     <section class="nameScreen">
-        <img src="./img/logo.png" alt="">
+            <img id="firstlyImg" src="./img/logo.png" alt="">
+            <button id="gameStartBtn" >Start Game</button>
     </section>
 <!-- Caracter Creation -->
     <section class="caracterCreation">
-        <h1>Select your hero!</h1>
+        <h1>Select your hero.</h1>
         <div id="caracterPic">
             <div id="imgOneBox">
                 <div class="imgOne"></div>
@@ -33,11 +34,11 @@
             <h2 for="name">Insert Your Name:</h2>
             <input type="text" id="name">
         </div>
-        <button id="start"  onclick="startGame()"><h2>Start Game </h2></button>
+        <button id="start"  onclick="startGame()"><h2>Explore Dungeon</h2></button>
     </section>
 <!-- Text Screen -->
-    <section class="textScreen">
-        <h1>As you delve deeper into the dungeon, lurking monsters keep stalking you.......</h1>
+    <section id="textScreen">
+        <h1>You stand in front of a ruined ornamented gate. You brought your trusted equipment and some provisions for the journey. You take a last look into the sunlight, and cautiously start walking into the darkened dungeon. Your eyes takes their time to adjust to the lack of light, and step-by-step you walk into dangers unknown...</h1>
     </section>
 <!-- Game Screen -->
     <main class="container">

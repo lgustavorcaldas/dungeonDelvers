@@ -32,6 +32,13 @@ h1{
     background-color: black;
     background-size: cover;
 }
+#name{
+    height: 25px;
+    background-color: rgb(252, 221, 182);
+    border: 1px solid rgb(68, 1, 1);
+    font-size: 24px;
+    border-radius: 5px;
+}
 /*---- Create Char ----*/
 .caracterCreation{
     /* display: flex; */
@@ -99,7 +106,7 @@ h1{
         margin: 30px;
     }
 /* Text Screen */
-.textScreen{
+#textScreen{
     display: none;
     width: 900px;
     height: 1000px;
@@ -244,6 +251,21 @@ h1{
                 .buttons button:hover{
                     transform: scale(105%);
                 }
+                #gameStartBtn{
+                    width: 193px;
+                    height: 75px;
+                    border: 0;
+                    border-radius: 10%;
+                    color: white;
+                    background-image: url(./img/buttons.png);
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    font-size: 28px;
+                }
+                    #gameStartBtn:hover{
+                        transform: scale(105%);
+                    }
     .monster, #left{
         width: 550px;
         height: 700px;
