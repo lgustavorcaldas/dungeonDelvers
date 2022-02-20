@@ -1,0 +1,248 @@
+body{
+    padding: 0px;
+    background-image: url(./img/backGround.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+}
+.container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 1600px;
+}
+    .player{
+        width: 550px;
+        height: 700px;
+        /* background-color: aquamarine; */
+    }
+        .heart{
+            position:absolute;
+            margin: 0 0 0 350px;
+        }
+            .heart div{
+                margin: 51px 48px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .heart div h1{
+                    margin-top: -30px;
+                }
+            #heart{
+                width: 200px;
+                height: 200px;
+            }
+        .sword{
+            position:absolute;
+            margin: 470px 0 0 0;
+        }
+            .sword div{
+                margin: 75px 0 0 25px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .sword div h1{
+                    margin-top: -30px;
+                }
+            #sword{
+                width: 170px;
+                height: 230px;
+            }
+        .shield{
+            position:absolute;
+            margin: 470px 0 0 350px;
+        }
+            .shield div{
+                margin: 75px 0 0 50px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .shield div h1{
+                    margin-top: -30px;
+                }
+            #shield{
+                width: 200px;
+                height: 230px;
+            }
+        .card{
+            margin: 50px auto;
+            width: 400px;
+            height: 600px;
+            border-radius: 30px;
+            background-image: url(./img/cardBackground.png);
+            background-size:contain;
+            display: flex;
+            align-items: center;
+        }
+            .pic{
+                margin: 0 auto;
+                width: 300px;
+                height: 400px;
+            }
+    .monster{
+        width: 550px;
+        height: 700px;
+        /* background-color: aquamarine; */
+    }
+        .monsterHeart{
+            position:absolute;
+            margin: 0 350px 0 0;
+        }
+            .monsterHeart div{
+                margin: 51px 48px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .monsterHeart div h1{
+                    margin-top: -30px;
+                }
+            #monsterHeart{
+                width: 200px;
+                height: 200px;
+            }
+        .monsterSword{
+            position:absolute;
+            margin: 470px 0 0 375px;
+        }
+            .monsterSword div{
+                margin: 75px 0 0 25px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .monsterSword div h1{
+                    margin-top: -30px;
+                }
+            #monsterSword{
+                width: 170px;
+                height: 230px;
+            }
+        .monsterShield{
+            position:absolute;
+            margin: 470px 0 0 0;
+        }
+            .monsterShield div{
+                margin: 75px 0 0 50px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .monsterShield div h1{
+                    margin-top: -30px;
+                }
+            #monsterShield{
+                width: 200px;
+                height: 230px;
+            }
+        .monsterCard{
+            margin: 50px auto;
+            width: 400px;
+            height: 600px;
+            border-radius: 30px;
+            background-image: url(./img/monsterCardBackground.png);
+            background-size:contain;
+            display: flex;
+            align-items: center;
+        }
+            .monsterPic{
+                margin: 0 auto;
+                width: 300px;
+                height: 400px;
+            }
+    .buttons{
+        margin-top: 75px;
+        width: 550px;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .mid{
+        height: 600px;
+        width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+        #log-top{
+            text-align: center;
+            height: 40px;
+        }
+        #log-bot{
+            height: 100px;
+            text-align: center;
+        }
+        #notYourTurn{
+            height: 100px;
+        }
+        .d20{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+            .d20 div{
+                position:absolute;
+                color: aliceblue;
+            }
+            .d20 img{
+                height: 290px;
+                width: 260px;
+            }
