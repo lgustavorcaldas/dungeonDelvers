@@ -1,12 +1,12 @@
-const nameAttacker = document.getElementById("nameAttacker")
-const rollAttacker = document.getElementById("rollAttacker")
-const logD20 = document.getElementById("logD20")
+const nameAttacker = document.getElementById("nameAttacker");
+const bottomLog = document.getElementById("bottomLog");
+const logD20 = document.getElementById("logD20");
 
-function attack(attacker, reciver, how){
-    console.log(`${attacker.name} is trying to attack ${reciver.name}`);
-    nameAttacker.innerHTML = `<span>${attacker.name} is trying to attack ${reciver.name}</span>`;
+function attack(attacker, receiver, how){
+    console.log(`${attacker.name} is trying to attack ${receiver.name}`);
+    nameAttacker.innerHTML = `<span>${attacker.name} is trying to attack ${receiver.name}</span>`;
 
-    let attack = rollAttack(attacker)
+    let attack = rollAttack(attacker);
 
     if(how == "fast"){
         attack.damage -= 3;
@@ -16,38 +16,43 @@ function attack(attacker, reciver, how){
         attack.hit -= 3;
     }
 
-    const caToBeat = reciver.armorClass.current;
-    
+    const caToBeat = receiver.armorClass;
+
     setTimeout(() => {
         console.log(`They roll ${attack.hit} to hit`);
-        rollAttacker.innerHTML =`<span>They roll ${attack.hit} to hit</span>`
+        bottomLog.innerHTML =`<span>They roll ${attack.hit} to hit</span>`;
     }, 1000);
 
     if(attack.hit >= caToBeat){
         setTimeout(() => {
-            console.log(`HIT!! Doing ${attack.damage} damage to ${reciver.name}`);
-            rollAttacker.innerHTML +=`<br/><span>HIT!! Doing ${attack.damage} damage to ${reciver.name}</span>`; 
+            console.log(`HIT!! Doing ${attack.damage} damage to ${receiver.name}`);
+            bottomLog.innerHTML +=`<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}</span>`; 
+            if(attacker == player){
+                $(".monsterCard").effect("pulsate");
+            } else{
+                $(".card").effect("pulsate");
+            }
         }, 2000);
 
-        let hpBefore = reciver.hitPoints.current
+        let hpBefore = receiver.hitPoints;
 
-        reciver.hitPoints.current -= attack.damage;
-        if(reciver.hitPoints.current <= 0){
+        receiver.hitPoints -= attack.damage;
+        if(receiver.hitPoints <= 0){
             return setTimeout(() => {
-                console.log(`${reciver.name} has died!!!!`);
-                rollAttacker.innerHTML +=`<br/><span>${reciver.name} has died!!!!</span>`
+                console.log(`${receiver.name} has died!!!!`);
+                bottomLog.innerHTML +=`<br/><span>${receiver.name} has died!!!!</span>`
             }, 3000);
         } else{
             return setTimeout(() => {
-                console.log(`${reciver.name} was at ${hpBefore} and now has ${reciver.hitPoints.current}`);
-                rollAttacker.innerHTML +=`<br/><span>${reciver.name} was at ${hpBefore} and now has ${reciver.hitPoints.current}</span>`
+                console.log(`${receiver.name} was at ${hpBefore} and now has ${receiver.hitPoints}`);
+                bottomLog.innerHTML +=`<br/><span>${receiver.name} was at ${hpBefore} and now has ${receiver.hitPoints}</span>`;
             }, 3000);
         }
     } else{
         return setTimeout(() => {
             console.log("Misses!");
-            rollAttacker.innerHTML +=`<br/><span>Misses!</span>`;
-        }, 3000);
+            bottomLog.innerHTML +=`<br/><h2>Misses!</h2>`;
+        }, 2000);
     }
 }
 
@@ -57,8 +62,8 @@ function rollAttack(attackerRolling){
 
     if(hit - attackerRolling.attack.mod.toHit == 20){
         console.log("CRITICAL HIT!");
-        rollAttacker.innerHTML +=`<h3>CRITICAL HIT!</h3>`
-        damage = 2 * damage
+        bottomLog.innerHTML +=`<h3>CRITICAL HIT!</h3>`;
+        damage = 2 * damage;
     }
     return {hit,damage};
 }
@@ -74,7 +79,7 @@ function rollToDamage(attackerDamage){
     }
     const damage = parseInt(valueOfRoll + modToDamage);
 
-    return damage
+    return damage;
 }
 
 function rollToHit(attackerToHit){
@@ -82,8 +87,8 @@ function rollToHit(attackerToHit){
     const witchDices = attackerToHit.attack.toHit;
 
     const valueOfRoll = Math.floor(((Math.random() * witchDices) + 1));
-    logD20.innerHTML = `${valueOfRoll}`
-    const hit = valueOfRoll + modToHit
+    logD20.innerHTML = `${valueOfRoll}`;
+    const hit = valueOfRoll + modToHit;
 
-    return hit
+    return hit;
 }

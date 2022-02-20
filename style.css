@@ -1,26 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+*{
+    font-family: MedievalSharp;
+}
 body{
     padding: 0px;
     background-image: url(./img/backGround.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 h1{
     margin: 0;
     padding: 0;
     font-size: 50px;
 }
+/*---- Login Screen ----*/
+.nameScreen{
+    color: white;
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    row-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    width: 100%;
+    background-color: black;
+    background-size: cover;
+}
+/*---- Create Char ----*/
+.caracterCreation{
+    /* display: flex; */
+    height: 1000px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+    .caracterCreation #start{
+        width: 190px;
+        height: 74px;
+        border: 0;
+        border-radius: 10%;
+        color: white;
+        background-image: url(./img/buttons.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+        #start:hover{
+            transform: scale(110%);
+        }
+    #caracterPic{
+        margin-top: 50px;
+        display: flex;
+        height: 600px;
+        width: 1000px;
+        justify-content: space-between;
+    }
+        .imgOne, .imgTwo, .imgThree{
+            width: 300px;
+            height: 500px;
+            background-image: url(./img/playerGuerreiro.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+            #imgOneBox, #imgTwoBox, #imgThreeBox{
+                width: 300px;
+                height: 500px;
+                display: flex;
+                flex-direction: column;
+            }
+            #imgOneTitle, #imgTwoTitle, #imgThreeTitle{
+                margin-top: 10px;
+                text-align: center;
+                font-size: 65px;
+            }
+            .imgOne:hover, .imgTwo:hover, .imgThree:hover{
+                transform: scale(110%);
+            }
+        .imgTwo{
+            background-image: url(./img/player.png);
+        }
+        .imgThree{
+            background-image: url(./img/playerMage.png);
+        }
+    #botPart{
+        width: 500px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 30px;
+        margin: 30px;
+    }
+/* Text Screen */
+.textScreen{
+    display: none;
+    width: 900px;
+    height: 1000px;
+    /* display: flex; */
+    align-items: center;
+    text-align: center;
+}
+/*---- Gamme Screen ----*/
 .container{
     margin: 0 auto;
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
     width: 1600px;
 }
-    .player{
+    .player, #right{
         width: 550px;
         height: 700px;
-        /* background-color: aquamarine; */
     }
+        #showName{
+            position:absolute;
+            margin: 400px 0 0 100px;
+            width: 350px;
+            height: 110px;
+            text-align: center;
+            background-position: center;
+            background-size: cover;
+            background-image: url(./img/banner.png);
+        }
         .heart{
             position:absolute;
             margin: 0 0 0 350px;
@@ -110,12 +218,46 @@ h1{
                 margin: 0 auto;
                 width: 300px;
                 height: 400px;
+                background-image: url(./img/player.png);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
             }
-    .monster{
+        .buttons{
+            margin-top: 150px;
+            width: 600px;
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+        }
+            .buttons button{
+                width: 190px;
+                height: 74px;
+                border: 0;
+                border-radius: 10%;
+                color: white;
+                background-image: url(./img/buttons.png);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+                .buttons button:hover{
+                    transform: scale(105%);
+                }
+    .monster, #left{
         width: 550px;
         height: 700px;
-        /* background-color: aquamarine; */
     }
+        #showNameMonster{
+            position:absolute;
+            margin: 400px 0 0 100px;
+            width: 350px;
+            height: 110px;
+            text-align: center;
+            background-position: center;
+            background-size: cover;
+            background-image: url(./img/banner.png);
+        }
         .monsterHeart{
             position:absolute;
             margin: 0 350px 0 0;
@@ -202,17 +344,12 @@ h1{
             align-items: center;
         }
             .monsterPic{
+                background-repeat: no-repeat;
+                background-position: center;
                 margin: 0 auto;
                 width: 300px;
                 height: 400px;
             }
-    .buttons{
-        margin-top: 75px;
-        width: 550px;
-        height: 50px;
-        display: flex;
-        justify-content: space-around;
-    }
     .mid{
         height: 600px;
         width: 400px;
@@ -231,8 +368,10 @@ h1{
         }
         #notYourTurn{
             height: 100px;
+            margin-top: 15px;
         }
         .d20{
+            margin-top: 100px;
             position: relative;
             display: flex;
             align-items: center;
@@ -246,3 +385,36 @@ h1{
                 height: 290px;
                 width: 260px;
             }
+    #endTurn{
+        position: absolute;
+        margin-top: 968px;
+        width: 190px;
+        height: 74px;
+        border: 0;
+        border-radius: 10%;
+        color: white;
+        background-image: url(./img/buttons.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+        #endTurn:hover{
+            transform: scale(105%);
+            background-color: #440a08;
+        }
+/* Death Scream */
+#deadScreen{
+    height: 1000px;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #aaaaaa;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+    #picWasted{
+        width: 850px;
+        height: 250px;
+        background-image: url(./img/wasted.png);
+    }
