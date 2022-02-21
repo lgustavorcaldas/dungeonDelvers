@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="Dungeon Delvers">
+    <meta property="og:description" content="Um jogo de rpg classsico de dungeon crawl">
+    <meta property="og:type" content="game">
+    <meta property="og:url" content="https://lgustavorcaldas.github.io/dungeonDelvers/">
+    <meta property="og:image" content="https://user-images.githubusercontent.com/84547544/154867594-e2ebae79-44bf-4e10-ae0c-9312d9782525.png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>Dungeon Delvers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Login Screen -->
+    <section class="nameScreen">
+            <img id="firstlyImg" src="./img/logo.png" alt="">
+            <button id="gameStartBtn" >Start Game</button>
+    </section>
+<!-- Caracter Creation -->
+    <section class="caracterCreation">
+        <h1>Select your hero.</h1>
+        <div id="caracterPic">
+            <div id="imgOneBox">
+                <div class="imgOne"></div>
+                <span id="imgOneTitle">Warrior</span>
+            </div>
+            <div id="imgTwoBox">
+                <div class="imgTwo"></div>
+                <span id="imgTwoTitle">Slayer</span>
+            </div>
+            <div id="imgThreeBox">
+                <div class="imgThree"></div>
+                <span id="imgThreeTitle">Mage</span>
+            </div>
+        </div>
+        <div id="botPart">
+            <h2 for="name">Insert Your Name:</h2>
+            <input type="text" id="name">
+        </div>
+        <button id="start"  onclick="startGame()"><h2>Explore Dungeon</h2></button>
+    </section>
+<!-- Text Screen -->
+    <section id="textScreen">
+        <h1>You stand in front of a ruined ornamented gate. You brought your trusted equipment and some provisions for the journey. You take a last look into the sunlight, and cautiously start walking into the darkened dungeon. Your eyes takes their time to adjust to the lack of light, and step-by-step you walk into dangers unknown...</h1>
+    </section>
+<!-- Game Screen -->
+    <main class="container">
+        <section id="right">
+            <div class="player">
+                <div class="stats">
+                    <div id="showName">
+                        <h2 id="playerName"></h2>
+                    </div>
+                    <div class="heart">
+                        <div>
+                            <span>HP</span>
+                            <h1 id="logHP">32</h1>
+                        </div>
+                        <img src="./img/heart.png" id="heart">
+                    </div>
+                    <div class="sword">
+                        <div>
+                            <span>STG</span>
+                            <h1 id="logSTG">+5</h1>
+                        </div>
+                        <img src="./img/sword.png" id="sword">
+                    </div>
+                    <div class="shield">
+                        <div>
+                            <span>AC</span>
+                            <h1 id="logAC">13</h1>
+                        </div>
+                        <img src="./img/shield.png" id="shield">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="pic"> </div>
+                </div>
+                <div class="buttons">
+                    <button class="buttonsAttk" onclick="typeOfAttack(0)"><h2>Fast Attk</h2></button>
+                    <button class="buttonsAttk" onclick="typeOfAttack()"><h2>Normal Attk</h2></button>
+                    <button class="buttonsAttk" onclick="typeOfAttack(1)"><h2>Strong Attk</h2></button>
+                </div>
+            </div>
+        </section>
+        <section class="mid">
+            <div id="log-top">
+                <h2 id="nameAttacker"></h2>
+            </div>
+            <div class="d20">
+                <div>
+                    <h1 id="logD20">13</h1>
+                </div>
+                <img src="./img/d20.png" alt="">
+            </div>
+            <div id="log-bot">
+                <h2> <span id="bottomLog"></span> </h2>
+            </div>
+            <button id="endTurn"  onclick="endTurn()"><h2>Monster's Turn</h2></button>
+            <h1 id="notYourTurn"></h1>
+        </section>
+        <section id="left">
+            <div  class="monster">
+                <div id="showNameMonster">
+                    <h2 id="monsterName"></h2>
+                </div>
+                <div class="monsterStats">
+                    <div class="monsterHeart">
+                        <div>
+                            <span>HP</span>
+                            <h1 id="monsterLogHP"></h1>
+                        </div>
+                        <img src="./img/heart.png" id="monsterHeart">
+                    </div>
+                    <div class="monsterSword">
+                        <div>
+                            <span>STG</span>
+                            <h1 id="monsterLogSTR"></h1>
+                        </div>
+                        <img src="./img/sword.png" id="monsterSword">
+                    </div>
+                    <div class="monsterShield">
+                        <div>
+                            <span>AC</span>
+                            <h1 id="monsterLogAC"></h1>
+                        </div>
+                        <img src="./img/shield.png" id="monsterShield">
+                    </div>
+                </div>
+                <div class="monsterCard">
+                    <div class="monsterPic">
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- Death Screen -->
+    <section id="deadScreen">
+        <div id="picWasted"></div>
+        <h1 id="points"></h1>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="./src/npcs.js"></script>
+    <script src="./src/action.js"></script>
+    <script src="./src/script.js"></script>
+</body>
+</html>
