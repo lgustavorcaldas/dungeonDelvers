@@ -1,7 +1,7 @@
 let turno = true;
 let level = 0;
-// //
 
+//Botão de iniciar
 $("#gameStartBtn").click(function () {
     $("#firstlyImg").effect("puff")
     $("#gameStartBtn").remove()
@@ -27,7 +27,7 @@ $("#gameStartBtn").click(function () {
 
 })
 
-
+//Seleção de personagem
 $(".imgOne").click(function () {
     console.log("One");
     $(".pic").css("background-image", `url(./img/playerGuerreiro.png)`)
@@ -59,6 +59,12 @@ $(".imgTwo").click(function () {
         'volume': 0.1,
         'autoplay': 'autoplay',
     }).appendTo("body");
+    player.hitPoints = 34;
+    player.armorClass = 13;
+    player.speed = 6;
+    player.attack.damage = [1, 8]
+    player.attack.mod.toHit = 8
+    player.attack.mod.toDamage = 6
 })
 $(".imgThree").click(function () {
     console.log("Three");
@@ -72,14 +78,15 @@ $(".imgThree").click(function () {
         'volume': 0.1,
         'autoplay': 'autoplay',
     }).appendTo("body");
-    player.hitPoints = 30;
+    player.hitPoints = 22;
     player.armorClass = 12;
-    player.speed = 5;
-    player.attack.damage = [1, 10]
-    player.attack.mod.toHit = 8
-    player.attack.mod.toDamage = 7
+    player.speed = 3;
+    player.attack.damage = [1, 6]
+    player.attack.mod.toHit = 10
+    player.attack.mod.toDamage = 6
 })
 
+//Inicia o jogo após seleção de personagens
 function startGame() {
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value
     rollForInitiative();
@@ -103,16 +110,36 @@ function startGame() {
         $(".container").fadeIn();
         $(".container").css("display", "flex");
         if (arrMonster[level] == arrMonster[0]) {
+            //  Para apresentar o comportamento dos metodos
+            //  bookSFX.book()
+            //  floorCollapseSFX.floorCollapse() 
+            //  goldSFX.gold() 
+            //  HalfPotionHP.potion() 
+            //  FullPotionHP .potion()
+            //  silverWeapon.weapons() 
+            //  enchantedArmor.armor() 
+            //  obsidianWeapon.weapons() 
+            //  scarletWeapon.weapons() 
+            //  enchantedWeapon.weapons() 
+            //  ancientArmor.armor() 
+            //  divineWeapon.weapons() 
+            //  divineArmor.armor() 
+            //  divineHeal.potion() 
             $("<audio></audio>").attr({
                 'class': 'musicplayer',
                 'src': './aud/ratbattle.mp3',
                 'volume': 0.1,
-                'autoplay': 'autoplay'
+                'autoplay': 'autoplay',
+                'loop': 'true',
             }).appendTo("body");
         }
     }, 8000);
 }
 
+function randomize(min, max) {
+    return Math.random() * ((max - min) - 1)
+}
+//Rola a iniciativa, decidindo a ordem dos turnos
 function rollForInitiative() {
     bottomLog.innerHTML = `Rolling initiative...`;
 
@@ -140,6 +167,7 @@ function rollForInitiative() {
     }, 1000);
 }
 
+//Botão de ataque com progressão, trocando os inimigos e a tela
 function typeOfAttack(num) {
     if (turno == false) return notYourTurn("your")
     $("#notYourTurn").html(``);
@@ -159,7 +187,7 @@ function typeOfAttack(num) {
     } else {
         attack(player, arrMonster[level], "normal");
     }
-
+//Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
         setTimeout(() => {
             $(".monster").fadeOut();
@@ -168,19 +196,18 @@ function typeOfAttack(num) {
                 'src': './aud/triumph.mp3',
                 'volume': 0.1,
                 'autoplay': 'autoplay',
-                'loop': 'true',
             }).appendTo("body");
         }, 2000);
         setTimeout(() => {
-            let randomPhraseTextScreen = Math.floor(Math.random() * 4)+1;
-            if(randomPhraseTextScreen == 1){
+            let randomPhraseTextScreen = Math.floor(Math.random() * 4) + 1;
+            if (randomPhraseTextScreen == 1) {
                 document.getElementById("textScreen").innerHTML = "<h1>As you delve deeper into the dungeon, lurking monsters keep stalking you...</h1>";
-            } else if( randomPhraseTextScreen == 2){
+            } else if (randomPhraseTextScreen == 2) {
                 document.getElementById("textScreen").innerHTML = "<h1>Step by step you walk cautiously, your spine chills as you hear a nearby roar...</h1>";
-            } else if( randomPhraseTextScreen == 3){
-                document.getElementById("textScreen").innerHTML = "<h1>You keep pressing your way foward, your senses sharpened by the dangers nearby, as you step into a new room, you perceive that you aren't alone...</h1>";
-            } else{
-                document.getElementById("textScreen").innerHTML = "<h1>What began as a quest for glory and treasure, now became a struggle for survive, you hold your breath as you smell a putrid odor nearby...</h1>";
+            } else if (randomPhraseTextScreen == 3) {
+                document.getElementById("textScreen").innerHTML = "<h1>You keep pressing your way foward,  senses sharpened by the crawling dangers nearby, as you step into a new room, you perceive that you aren't alone...</h1>";
+            } else {
+                document.getElementById("textScreen").innerHTML = "<h1>What began as a quest for glory and treasure, now became a struggle for survival, you hold your breath as you smell a putrid odor nearby...</h1>";
             }
 
             $("#textScreen").fadeIn();
@@ -200,7 +227,29 @@ function typeOfAttack(num) {
                 $(".container").fadeIn();
                 $(".container").css("display", "flex");
                 $(".musicplayer").remove()
-                if (arrMonster[level] == arrMonster[1]) {  
+                $("#notYourTurn").html("")
+                if (arrMonster[level] == arrMonster[1]) {
+                    //Goblin Rewards//
+                    let randomizeItem = randomize(1, 11)
+                    if (randomizeItem <= 2) {
+                        //Looting gold effect
+                        goldSFX.gold()
+                    } else if (randomizeItem > 2 && randomizeItem <= 5) {
+                        //Floor Collapsing effect
+                        floorCollapseSFX.floorCollapse()
+                        bottomLog.innerHTML += `<br/><span>The floor beneath your feet collapsed on itself, you quickly jumped foward to avoid falling into the abyss.</span>`
+
+                    } else if (randomizeItem > 5 && randomizeItem <= 8) {
+                        //Lore book effect
+                        bookSFX.book()
+                        bottomLog.innerHTML += `<br/><span>As you were searching around, you found an old half-burnt journal. It is from a group of ancient scholars who were trying to study it. They found out that the dungeon is helding an old ziggurat used for dark rituals.</span>`
+                    } else {
+                        //Half-Potion effect
+                        HalfPotionHP.potion()
+                        console.log(player.hitPoints)
+                    }
+                    //End of Goblin Rewards
+                    //Goblin Battle Music
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/goblinbattle.mp3',
@@ -208,7 +257,25 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
+                    //End of Goblin Battle Music
                 } else if (arrMonster[level] == arrMonster[2]) {
+                    //Wolf Rewards
+                    let randomizeItem = randomize(1, 11)
+                    if (randomizeItem <= 2) {
+                        bottomLog.innerHTML += `<br/><span>You found a bag of gold!</span>`
+                        goldSFX.gold()
+                    } else if (randomizeItem > 2 && randomizeItem <= 5) {
+                        floorCollapseSFX.floorCollapse()
+                        bottomLog.innerHTML += `<br/><span>The floor beneath you reveal a pungee spike trap, you jump foward to avoid it.</span>`
+                    } else if (randomizeItem > 5 && randomizeItem <= 8) {
+                        bookSFX.book()
+                        bottomLog.innerHTML += `<br/><span>Upon bringing light to a nearby wall with a torch, you've caught eye of inscriptions in the wall. You don't understand the language, but you recognize the drawing of a demon setting a city ablaze. </span>`
+                    } else {
+                        FullPotionHP.potion()
+                        console.log(player.hitPoints)
+                    }
+                    //End of Wolf Rewards
+                    //Wolf Battle Music
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/wolfbattle.mp3',
@@ -216,12 +283,13 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
+                    //End of Wolf Battle Music
                 } else if (arrMonster[level] == arrMonster[3]) {
-                    bottomLog.innerHTML += `<br/><span>You found a Silver Weapon!</span>`
-                    player.attack.mod.toHit += 6
-                    player.attack.damage = [2, 10]
-                    player.attack.mod.toDamage += 2
-                    logSTG.innerHTML = "+" + player.attack.mod.toHit
+                    //Giant Spider Rewards
+                    HalfPotionHP.potion()
+                    silverWeapon.weapons()
+                    //Giant Spider Rewards End
+                    //Giant Spider Battle Music
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/spiderbattle.mp3',
@@ -229,10 +297,15 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
+                    //End of Giant Spider Battle Music
                 } else if (arrMonster[level] == arrMonster[4]) {
-                    bottomLog.innerHTML += `<br/><span>You found a set of Enchanted Armor! AC Increased by 3!</span>`
-                    player.armorClass += 3
-                    logAC.innerHTML = "+" + player.armorClass
+                    //Piece of Lore
+                    bottomLog.innerHTML += `<br/><span>While exploring, you noticed the sparks of remaining dark energy in the atmosphere.</span>`
+                    //Owlbear Rewards
+                    enchantedArmor.armor()
+                    FullPotionHP.potion()
+                    //End of Owlbear Rewards
+                    //Owlbear Battle Music
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/bearbattle.mp3',
@@ -240,10 +313,22 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
+                    //End of Owlbear Battle Music
                 } else if (arrMonster[level] == arrMonster[5]) {
-                    bottomLog.innerHTML += `<br/><span>You found a miraculous Health Potion! Hit Points Restored! Max Hit Points Increased!</span>`
-                    player.hitPoints = 45
-                    logHP.innerHTML = player.hitPoints
+                    //Piece of Lore
+                    bottomLog.innerHTML += `<br/><span>New evidence of the old rituals grabs your attention. You go through more old books, and you read the name "Souleater" througout many of them. It seems like this "Souleater" created a more powerfull version of the enslavement spell.</span>`
+                    bookSFX.book()
+                    //Manticore Rewards
+                    let randomizeItem = randomize(1, 7)
+                    if (randomizeItem <= 2) {
+                        obsidianWeapon.weapons()
+                    } else if (randomizeItem > 2 && randomizeItem <= 4) {
+                        scarletWeapon.weapons()
+                    } else {
+                        enchantedWeapon.weapons()
+                    }
+                    //End of Manticore Rewards
+                    //Manticore Battle Theme
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/manticorebattle.mp3',
@@ -251,11 +336,13 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
+                    //End of Manticore Battle Theme
                 } else if (arrMonster[level] == arrMonster[6]) {
-                    bottomLog.innerHTML += `<br/><span>You found an Enchanted Weapon!</span>`
-                    player.attack.mod.toHit += 4
-                    player.attack.damage = [4, 12]
-                    logSTG.innerHTML = "+" + player.attack.mod.toHit
+                    //Piece of Lore
+                    bottomLog.innerHTML += `<br/><span>A chill is sent through your spines as you find the journal of a wizard named "Cainhurst". The said wizard enhanced the enslavement ritual, and used it to absorb the life essence of everything it could reach, and thus became the Souleater. As his corruption spread, the Goddess lost her influence on the region, and famine and desperation arose.</span>`
+                    //Behemoth Rewards
+                    ancientArmor.armor()
+                    //End of Behemoth Rewards
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/manticorebattle.mp3',
@@ -263,12 +350,14 @@ function typeOfAttack(num) {
                         'autoplay': 'autoplay',
                         'loop': 'true',
                     }).appendTo("body");
-                } else if (arrMonster[level] == arrMonster[7]){
-                    bottomLog.innerHTML += `<br/><span>You found a Divine Shrine! Hit Points max increased! Health Restored! Armor Class Increased by 5! </span><br/><span>The Godess reaches you:'Cleanse this corrupted place my child, and restore peace in the region!'</span>`
-                    player.armorClass += 5
-                    logAC.innerHTML = "+" + player.armorClass
-                    player.hitPoints = 70
-                    logHP.innerHTML = player.hitPoints
+                } else if (arrMonster[level] == arrMonster[7]) {
+                    //Piece of Lore
+                    bottomLog.innerHTML += `<br/><span>You found the last remaining Divine Shrine on the region! </span><br/><span>The Godess reaches you:'Cleanse this corrupted place my child, and restore peace in the region!'</span>`
+                    //Dragon Rewards
+                    divineWeapon.weapons()
+                    divineArmor.armor()
+                    divineHeal.potion()
+                    //Dragon Rewards
                     $("<audio></audio>").attr({
                         'class': 'musicplayer',
                         'src': './aud/dragonbattle.mp3',
@@ -307,6 +396,7 @@ function typeOfAttack(num) {
     }
 };
 
+//Termina o turno do jogadora, passando para o ataque do monstro
 function endTurn() {
     if (arrMonster[level].hitPoints <= 0) return $("#notYourTurn").html(`The Monster is Dead`);
 
@@ -345,7 +435,7 @@ function endTurn() {
 function notYourTurn(x) {
     $("#notYourTurn").html(`It's not ${x} turn!`);
 };
-
+//Função que gera os monstros de forma dinâmica
 function monster() {
     $(`#monsterLogHP`).html(arrMonster[level].hitPoints);
     $(`#monsterLogAC`).html(arrMonster[level].armorClass);

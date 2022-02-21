@@ -2,6 +2,7 @@ const nameAttacker = document.getElementById("nameAttacker");
 const bottomLog = document.getElementById("bottomLog");
 const logD20 = document.getElementById("logD20");
 
+//Função de ataque, recebe como parametros o atacante, quem recebe o ataque e qual o tipo de ataque usado
 function attack(attacker, receiver, how){
     console.log(`${attacker.name} is trying to attack ${receiver.name}`);
     nameAttacker.innerHTML = `<span>${attacker.name} is trying to attack ${receiver.name}</span>`;
@@ -75,6 +76,7 @@ function attack(attacker, receiver, how){
     }
 }
 
+//Função que rola o ataque
 function rollAttack(attackerRolling){
     const hit = rollToHit(attackerRolling);
     let damage = rollToDamage(attackerRolling);
@@ -87,6 +89,7 @@ function rollAttack(attackerRolling){
     return {hit,damage};
 }
 
+//Causa o dano a vida do inimigo
 function rollToDamage(attackerDamage){
     const modToDamage = attackerDamage.attack.mod.toDamage;
     const howManyDices = attackerDamage.attack.damage[0];
@@ -101,6 +104,7 @@ function rollToDamage(attackerDamage){
     return damage;
 }
 
+//Funcao que testa se a rolagem foi maior ou igual a Armor Class(AC)
 function rollToHit(attackerToHit){
     const modToHit = attackerToHit.attack.mod.toHit;
     const witchDices = attackerToHit.attack.toHit;
