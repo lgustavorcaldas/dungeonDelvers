@@ -19,7 +19,6 @@ class Enemies {
         this.attack = _attack;
     };
 };
-
 class Players {
     constructor(_nome, _hitPoints, _armorClass, _speed, _attack) {
         this.name = _nome;
@@ -29,7 +28,6 @@ class Players {
         this.attack = _attack;
     };
 };
-
 class Items {
     constructor(_name) {
         this.name = _name;

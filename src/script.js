@@ -344,7 +344,6 @@ function typeOfAttack(num) {
 function endTurn() {
     if (arrMonster[level].hitPoints <= 0) return $("#notYourTurn").html(
         `The Monster is Dead`);
-
     if (turno == true) return notYourTurn(arrMonster[level].name);
     $("#notYourTurn").html(
         ``);
