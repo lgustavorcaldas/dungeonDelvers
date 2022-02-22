@@ -32,11 +32,17 @@ function attack(attacker, receiver, how){
             bottomLog.innerHTML +=
                 `<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}.</span>`; 
             if(attacker == player){
+                if(character == "Warrior"){
+                    addMusic("warriorhit", false);
+                } else if(character == "Slayer"){
+                    addMusic("slayerhit", false);
+                }else {
+                    addMusic("wizardhit", false);
+                }
                 floatingDamage(attack.damage, `floatingDmgMonster`)
                 $("#blabla").effect("pulsate")
                 $(`#monsterLogHP`).effect("pulsate")
                 $(".monsterCard").effect("pulsate");
-                addMusic("playerhit", false);
             } else{
                 floatingDamage(attack.damage, `floatingDmgPlayer`)
                 $("#blabla").effect("pulsate")

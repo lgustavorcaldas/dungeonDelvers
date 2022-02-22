@@ -15,3 +15,4 @@ Implementações
 
 Modificações
 - Revisar o botomLog, pra gente conseguir encaixar os textos narrativos e os items em um outro lugar e as coisas nao se misturarem de forma confusa
+- No som da batalha, trocar o som de acerto de ataque dos personagens para combinar com a classe
