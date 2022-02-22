@@ -15,6 +15,17 @@ const player = {
     }
 };
 
+// Music
+function addMusic(name,loop){
+    $("<audio></audio>").attr({
+        'class': 'musicplayer',
+        'src': `./aud/${name}.mp3`,
+        'volume': 0.1,
+        'autoplay': 'autoplay',
+        'loop': loop,
+    }).appendTo("body");
+}
+
 class Enemies {
     constructor(_nome, _hitPoints, _armorClass, _speed, _attack) {
         this.name = _nome;
@@ -42,12 +53,7 @@ class Items {
                 $(".shield").effect("bounce")
                 logAC.innerHTML = "+" + player.armorClass
             }, 2000)
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/findtreasure.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-            }).appendTo("body");
+            addMusic("findtreasure", false);
             break;
 
             case "Ancient Armor":
@@ -61,17 +67,13 @@ class Items {
                 $(".shield").effect("bounce")
                 logAC.innerHTML = "+" + player.armorClass
             }, 2000)
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/findtreasure.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-            }).appendTo("body");
+            addMusic("findtreasure", false);
             break;
 
             case "Divine Armor":
                 bottomLog.innerHTML += `<br/><span id="armourText">The goddess blessed your amor, and it turned divine!</span>`
                 $("#armourText").css("color", "rgb(255, 234, 0)")
+                $("#armourText").css("background-color", "black")
                 player.armorClass = 23
             setTimeout(() => {
                 $("#logAC").animate({
@@ -79,13 +81,8 @@ class Items {
                 }, 10)
                 $(".shield").effect("bounce")
                 logAC.innerHTML = "+" + player.armorClass
-            }, 2000)
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/blessing.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-            }).appendTo("body");
+            }, 2000);
+            addMusic("blessing", false);
             break;
                 
         }
@@ -106,13 +103,8 @@ class Items {
                         color:"gray",
                     }, 10)
                     $(".sword").effect("bounce")
-                }, 1500)
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/findtreasure.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                }).appendTo("body");
+                }, 1500);
+                addMusic("findtreasure", false);
                 break;
 
             case "Obsidian Weapon":
@@ -128,13 +120,8 @@ class Items {
                         color:"rgb(93,57,84)",
                     }, 10)
                     $(".sword").effect("bounce")
-                }, 1500)
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/findtreasure.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                }).appendTo("body");
+                }, 1500);
+                addMusic("findtreasure", false);
                 break;
 
             case "Scarlet Weapon":
@@ -151,12 +138,7 @@ class Items {
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500)
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/findtreasure.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                }).appendTo("body");
+                addMusic("findtreasure", false);
                 break;
 
             case "Enchanted Weapon":
@@ -173,17 +155,13 @@ class Items {
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500)
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/findtreasure.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                }).appendTo("body");
+                addMusic("findtreasure", false);
                 break;
 
             case "Divine Weapon":
                 bottomLog.innerHTML += `<br/><span id="weaponID">The Goddess blessed your weapon into a Divine Weapon!</span>`
                 $("#weaponID").css("color", "rgb(255, 234, 0)")
+                $("#weaponID").css("background-color", "black")
                 player.attack.damage = [4, 12]
                 player.attack.mod.toHit = 16
                 player.attack.mod.toDamage = 10
@@ -194,13 +172,8 @@ class Items {
                         color:"rgb(255, 234, 0)",
                     }, 10)
                     $(".sword").effect("bounce")
-                }, 1500)
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/blessing.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                }).appendTo("body");
+                }, 1500);
+                addMusic("blessing", false);
                 break;
 
         }
@@ -219,12 +192,7 @@ class Items {
                 }, 2500)
                 setTimeout(() => {
                     logHP.innerHTML = player.hitPoints
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/potionsound.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                    }).appendTo("body");
+                    addMusic("potionsound", false);
                 }, 2500)
                 $(".heart").effect("bounce")
                 $(".heart").animate({
@@ -243,12 +211,7 @@ class Items {
                 }, 2500)
                 setTimeout(() => {
                     logHP.innerHTML = player.hitPoints
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/potionsound.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                    }).appendTo("body");
+                    addMusic("potionsound", false);
                 }, 2500)
                 $(".heart").effect("bounce")
                 $(".heart").animate({
@@ -260,6 +223,7 @@ class Items {
                 player.hitPoints += 10
                 bottomLog.innerHTML += `<br/><h4 id="hPotion">The Goddess restored and enhanced your Health!</h4>`
                 $("#hPotion").css("color", "rgb(255, 234, 0)")
+                $("#hPotion").css("background-color", "black")
                 //Hit points restore animation
                 
                 $(".heart").animate({
@@ -267,12 +231,7 @@ class Items {
                 }, 2500)
                 setTimeout(() => {
                     logHP.innerHTML = player.hitPoints
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/blessing.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                    }).appendTo("body");
+                    addMusic("blessing", false);
                 }, 2500)
                 $(".heart").effect("bounce")
                 $(".heart").animate({
@@ -285,36 +244,19 @@ class Items {
 
     gold() {
         bottomLog.innerHTML += `<br/><span id="goldBag">You found a small bag of gold!</span>`
-        $("#goldBag").css("color", "rgb(155,135,12)")
-        $("<audio></audio>").attr({
-            'class': 'musicplayer',
-            'src': './aud/gold.mp3',
-            'volume': 0.1,
-            'autoplay': 'autoplay',
-        }).appendTo("body");
+        $("#goldBag").css("color", "rgb(155,135,12)");
+        addMusic("gold", false);
     }
 
     book(){
-        $("<audio></audio>").attr({
-            'class': 'musicplayer',
-            'src': './aud/openingbook.mp3',
-            'volume': 0.1,
-            'autoplay': 'autoplay',
-        }).appendTo("body");
-
+        addMusic("openingbook", false);
     }
 
     floorCollapse(){
         setTimeout(() => {
-            $(".card").effect("bounce")
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/floorcollapse.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-            }).appendTo("body");
+            $(".card").effect("bounce");
+            addMusic("floorcollapse", false);
         }, 1500)
-       
 
     }
 }

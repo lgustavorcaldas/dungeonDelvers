@@ -5,41 +5,25 @@ let level = 0;
 $("#gameStartBtn").click(function () {
     $("#firstlyImg").effect("puff")
     $("#gameStartBtn").remove()
-    $("<audio></audio>").attr({
-        'class': 'musicplayer',
-        'src': './aud/startbuttonroar.wav',
-        'volume': 0.1,
-        'autoplay': 'autoplay',
-    }).appendTo("body");
+    addMusic("startbuttonroar", false);
 
     setTimeout(() => {
         $(".caracterCreation").fadeIn();
         $(".caracterCreation").css("display", "flex");
         $(".nameScreen").fadeOut();
-        $("<audio></audio>").attr({
-            'class': 'musicplayer',
-            'src': './aud/maintheme.mp3',
-            'volume': 0.1,
-            'autoplay': 'autoplay',
-            'loop': 'true',
-        }).appendTo("body");
-    }, 3500)
 
+        addMusic("maintheme", true);
+    }, 3500)
 })
 
 //Seleção de personagem
 $(".imgOne").click(function () {
     console.log("One");
     $(".pic").css("background-image", `url(./img/playerGuerreiro.png)`)
-    $(".imgOne").css("transform", "scale(110%)")
-    $(".imgTwo").css("transform", "scale(100%)")
-    $(".imgThree").css("transform", "scale(100%)")
-    $("<audio></audio>").attr({
-        'class': 'musicplayer',
-        'src': './aud/warriorselection.mp3',
-        'volume': 0.1,
-        'autoplay': 'autoplay',
-    }).appendTo("body");
+    $(".imgOne").css("transform", "scale(110%)");
+    $(".imgTwo").css("transform", "scale(100%)");
+    $(".imgThree").css("transform", "scale(100%)");
+    addMusic("warriorselection", false);
     player.hitPoints = 28;
     player.armorClass = 15;
     player.speed = 2;
@@ -50,15 +34,10 @@ $(".imgOne").click(function () {
 $(".imgTwo").click(function () {
     console.log("Two");
     $(".pic").css("background-image", "url(./img/player.png)")
-    $(".imgTwo").css("transform", "scale(110%)")
-    $(".imgThree").css("transform", "scale(100%)")
-    $(".imgOne").css("transform", "scale(100%)")
-    $("<audio></audio>").attr({
-        'class': 'musicplayer',
-        'src': './aud/slayerselection.mp3',
-        'volume': 0.1,
-        'autoplay': 'autoplay',
-    }).appendTo("body");
+    $(".imgTwo").css("transform", "scale(110%)");
+    $(".imgThree").css("transform", "scale(100%)");
+    $(".imgOne").css("transform", "scale(100%)");
+    addMusic("slayerselection", false);
     player.hitPoints = 34;
     player.armorClass = 13;
     player.speed = 6;
@@ -69,15 +48,11 @@ $(".imgTwo").click(function () {
 $(".imgThree").click(function () {
     console.log("Three");
     $(".pic").css("background-image", "url(./img/playerMage.png)")
-    $(".imgThree").css("transform", "scale(110%)")
-    $(".imgTwo").css("transform", "scale(100%)")
-    $(".imgOne").css("transform", "scale(100%)")
-    $("<audio></audio>").attr({
-        'class': 'musicplayer',
-        'src': './aud/wizardselection.mp3',
-        'volume': 0.1,
-        'autoplay': 'autoplay',
-    }).appendTo("body");
+    $(".imgThree").css("transform", "scale(110%)");
+    $(".imgTwo").css("transform", "scale(100%)");
+    $(".imgOne").css("transform", "scale(100%)");
+    // }).appendTo("body");
+    addMusic("wizardselection", false);
     player.hitPoints = 22;
     player.armorClass = 12;
     player.speed = 3;
@@ -96,13 +71,8 @@ function startGame() {
     $(`#logAC`).html(player.armorClass);
     $(`#logSTG`).html(`+${player.attack.mod.toHit}`);
     $("#textScreen").fadeIn();
-    $(".musicplayer").remove()
-    $("<audio></audio>").attr({
-        'class': 'musicplayer',
-        'src': './aud/transition.mp3',
-        'volume': 0.1,
-        'autoplay': 'autoplay'
-    }).appendTo("body");
+    $(".musicplayer").remove();
+    addMusic("transition", false);
     $("#textScreen").css("display", "flex");
     $(".caracterCreation").fadeOut();
     setTimeout(() => {
@@ -124,14 +94,8 @@ function startGame() {
             //  ancientArmor.armor() 
             //  divineWeapon.weapons() 
             //  divineArmor.armor() 
-            //  divineHeal.potion() 
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/ratbattle.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-                'loop': 'true',
-            }).appendTo("body");
+            //  divineHeal.potion()
+            addMusic("ratbattle", true);
         }
     }, 8000);
 }
@@ -139,6 +103,7 @@ function startGame() {
 function randomize(min, max) {
     return Math.random() * ((max - min) - 1)
 }
+
 //Rola a iniciativa, decidindo a ordem dos turnos
 function rollForInitiative() {
     bottomLog.innerHTML = `Rolling initiative...`;
@@ -191,12 +156,7 @@ function typeOfAttack(num) {
     if (arrMonster[level].hitPoints <= 0) {
         setTimeout(() => {
             $(".monster").fadeOut();
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/triumph.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-            }).appendTo("body");
+            addMusic("triumph", false);
         }, 2000);
         setTimeout(() => {
             let randomPhraseTextScreen = Math.floor(Math.random() * 4) + 1;
@@ -213,14 +173,8 @@ function typeOfAttack(num) {
             $("#textScreen").fadeIn();
             $("#textScreen").css("display", "flex");
             $(".container").fadeOut();
-            $(".musicplayer").remove()
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src': './aud/transition.mp3',
-                'volume': 0.1,
-                'autoplay': 'autoplay',
-                'loop': 'true',
-            }).appendTo("body");
+            $(".musicplayer").remove();
+            addMusic("transition", true);
 
             setTimeout(() => {
                 $("#textScreen").fadeOut();
@@ -250,13 +204,8 @@ function typeOfAttack(num) {
                     }
                     //End of Goblin Rewards
                     //Goblin Battle Music
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/goblinbattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("goblinbattle", true);
+
                     //End of Goblin Battle Music
                 } else if (arrMonster[level] == arrMonster[2]) {
                     //Wolf Rewards
@@ -276,13 +225,8 @@ function typeOfAttack(num) {
                     }
                     //End of Wolf Rewards
                     //Wolf Battle Music
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/wolfbattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("wolfbattle", true);
+                    
                     //End of Wolf Battle Music
                 } else if (arrMonster[level] == arrMonster[3]) {
                     //Giant Spider Rewards
@@ -290,13 +234,8 @@ function typeOfAttack(num) {
                     silverWeapon.weapons()
                     //Giant Spider Rewards End
                     //Giant Spider Battle Music
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/spiderbattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("spiderbattle", true);
+
                     //End of Giant Spider Battle Music
                 } else if (arrMonster[level] == arrMonster[4]) {
                     //Piece of Lore
@@ -306,13 +245,8 @@ function typeOfAttack(num) {
                     FullPotionHP.potion()
                     //End of Owlbear Rewards
                     //Owlbear Battle Music
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/bearbattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("bearbattle", true);
+
                     //End of Owlbear Battle Music
                 } else if (arrMonster[level] == arrMonster[5]) {
                     //Piece of Lore
@@ -329,13 +263,8 @@ function typeOfAttack(num) {
                     }
                     //End of Manticore Rewards
                     //Manticore Battle Theme
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/manticorebattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("manticorebattle", true);
+
                     //End of Manticore Battle Theme
                 } else if (arrMonster[level] == arrMonster[6]) {
                     //Piece of Lore
@@ -343,13 +272,9 @@ function typeOfAttack(num) {
                     //Behemoth Rewards
                     ancientArmor.armor()
                     //End of Behemoth Rewards
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/manticorebattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+
+                    addMusic("manticorebattle", true);
+
                 } else if (arrMonster[level] == arrMonster[7]) {
                     //Piece of Lore
                     bottomLog.innerHTML += `<br/><span>You found the last remaining Divine Shrine on the region! </span><br/><span>The Godess reaches you:'Cleanse this corrupted place my child, and restore peace in the region!'</span>`
@@ -358,26 +283,16 @@ function typeOfAttack(num) {
                     divineArmor.armor()
                     divineHeal.potion()
                     //Dragon Rewards
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/dragonbattle.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    addMusic("dragonbattle", true);
+
                 } else {
                     $(".monster").fadeOut();
                     $("#textScreen").css("display", "flex");
                     $("#textScreen").html("<h1>As you deliver the last hit on the Dragon, you cleanse the region of the source of the corruption, villagers around gather to celebrate as the lands continues to grow green. The Godess appoints you as her champion, and your name echoes from generation to generation!</h1>")
                     $(".container").fadeOut();
                     $(".musicplayer").remove();
-                    $("<audio></audio>").attr({
-                        'class': 'musicplayer',
-                        'src': './aud/youwin.mp3',
-                        'volume': 0.1,
-                        'autoplay': 'autoplay',
-                        'loop': 'true',
-                    }).appendTo("body");
+                    
+                    addMusic("youwin", true);
                 }
 
             }, 5000);
@@ -416,15 +331,10 @@ function endTurn() {
         if (player.hitPoints <= 0) {
             setTimeout(() => {
                 $(".container").fadeOut();
-                $(".musicplayer").remove()
+                $(".musicplayer").remove();
                 $("#deadScreen").fadeIn();
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src': './aud/gameover.mp3',
-                    'volume': 0.1,
-                    'autoplay': 'autoplay',
-                    'loop': 'true',
-                }).appendTo("body");
+                addMusic("gameover", true);
+
                 $("#deadScreen").css("display", "flex");
                 $("#points").html(`You have reached level ${level}`);
             }, 4000);

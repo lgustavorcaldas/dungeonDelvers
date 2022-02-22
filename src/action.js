@@ -30,20 +30,10 @@ function attack(attacker, receiver, how){
             bottomLog.innerHTML +=`<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}</span>`; 
             if(attacker == player){
                 $(".monsterCard").effect("pulsate");
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src':'./aud/playerhit.mp3',
-                    'volume':0.1,
-                    'autoplay':'autoplay'
-                }).appendTo("body");
+                addMusic("playerhit", false);
             } else{
                 $(".card").effect("pulsate");
-                $("<audio></audio>").attr({
-                    'class': 'musicplayer',
-                    'src':'./aud/monsterhit.mp3',
-                    'volume':0.1,
-                    'autoplay':'autoplay'
-                }).appendTo("body");
+                addMusic("monsterhit", false);
             }
         }, 2000);
 
@@ -63,15 +53,9 @@ function attack(attacker, receiver, how){
         }
     } else{
         return setTimeout(() => {
-            $("<audio></audio>").attr({
-                'class': 'musicplayer',
-                'src':'./aud/miss.mp3',
-                'volume':0.1,
-                'autoplay':'autoplay'
-            }).appendTo("body");
+            addMusic("miss", false);
             console.log("Misses!");
-            bottomLog.innerHTML +=`<br/><h2>Misses!</h2>`
-           
+            bottomLog.innerHTML +=`<br/><h2>Misses!</h2>`;
         }, 2000);
     }
 }
