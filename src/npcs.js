@@ -304,7 +304,7 @@ const divineArmor = new Items("Divine Armor")
 const divineHeal = new Items("Divine Heal")
 
 
-arrMonster.push(new Enemies("Giant Rat", 6, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 6, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
 arrMonster.push(new Enemies("Goblin", 12, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 
