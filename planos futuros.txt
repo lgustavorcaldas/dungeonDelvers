@@ -6,8 +6,8 @@ Correções:
 - Balanceamento, pq ta muito dificil chegar na manticora, e impossivel matar ela, ai dar um reabalance
 
 Implementações
-- Float Damage Numbers quando alguem tomar dano na cartinha;
-
+// - Float Damage Numbers quando alguem tomar dano na cartinha;
+- Adicionar um mapa após a transição de texto;
 - 1 botao com uma habilidade especial de cada classe (Shield Wall pro warrior, Execute pro slayer, Magic Blast pra mage, ai a gente faz os efeitinhos especiais)
 - 1 botao de usar item (talvez pra dar usar um fade out nos botoes que ja existem e dar fade in em botoes que usam items, e fazer eles desaparecerem depois de usar, ai da pra pensar)
 - Algoritmo de roguelite, gerando diferentes monstros por niveis

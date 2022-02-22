@@ -1,5 +1,5 @@
 let turno = true;
-let level = 4;
+let level = 3;
 let caracter = 0;
 let player;
 
@@ -51,7 +51,7 @@ $(".imgThree").click(function () {
 //Inicia o jogo após seleção de personagens
 function startGame() {
     if( caracter == "Warrior"){
-        player = new Players("Chesterfield", 28, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
+        player = new Players("Chesterfield", 3000, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
     } else if( caracter == "Mage"){
         player = new Players("Chesterfield", 22, 12, 3, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 8] });
     } else{

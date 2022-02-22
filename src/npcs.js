@@ -9,6 +9,30 @@ function addMusic(name,loop){
         'loop': loop,
     }).appendTo("body");
 };
+
+function floatingDamage(damage, id){
+    $(`<h2 id="blabla">-${damage}</h2>`).css({
+        "display": "none",
+        "position": "absolute",
+        "margin-top": "0px",
+        "margin-right": "75px",
+        "color": "red",
+        "text-shadow":"-2px 2px 0px black",
+        "font-size": "32px"
+    }).appendTo(`#${id}`);
+    $("#blabla").css("display","block")
+    
+    $("#blabla").animate({
+         "left": "-25px",
+         "top": "-45px",
+    }, 2000)
+    
+    setTimeout(() => {
+        $("#blabla").remove()
+    }, 2000)
+    
+};
+
 // Class
 class Enemies {
     constructor(_nome, _hitPoints, _armorClass, _speed, _attack) {
@@ -286,7 +310,7 @@ arrMonster.push(new Enemies("Goblin", 12, 12, 1, { "name": "stab", "mod": { "toH
 
 arrMonster.push(new Enemies("Wolf", 18, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [2, 4] }));
 
-arrMonster.push(new Enemies("GiantSpider", 32, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
+arrMonster.push(new Enemies("GiantSpider", 200, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
 
 arrMonster.push(new Enemies("Owlbear", 40, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 4 }, "toHit": 20, "damage": [2, 9] }));
 
