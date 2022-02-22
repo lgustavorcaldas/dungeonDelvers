@@ -1,18 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+:root{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 *{
     font-family: MedievalSharp;
 }
 body{
+    display: flex;
     padding: 0px;
+    margin: 0px;
     background-image: url(./img/backGround.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%
 }
 h1{
     margin: 0;
@@ -25,14 +28,13 @@ h4{
 }
 /*---- Login Screen ----*/
 .nameScreen{
-    color: white;
     display: flex;
-    /* display: none; */
+    color: white;
     flex-direction: column;
     row-gap: 50px;
     justify-content: center;
     align-items: center;
-    height: 1000px;
+    height: 800px;
     width: 100%;
     background-color: black;
     background-size: cover;
@@ -46,12 +48,11 @@ h4{
 }
 /*---- Create Char ----*/
 .caracterCreation{
-    /* display: flex; */
-    height: 1000px;
+    display: none;
+    height: 800px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: none;
 }
     .caracterCreation #start{
         width: 190px;
@@ -75,16 +76,16 @@ h4{
         justify-content: space-between;
     }
         .imgOne, .imgTwo, .imgThree{
-            width: 300px;
-            height: 500px;
+            width: 240px;
+            height: 400px;
             background-image: url(./img/playerGuerreiro.png);
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
         }
             #imgOneBox, #imgTwoBox, #imgThreeBox{
-                width: 300px;
-                height: 500px;
+                width: 240px;
+                height: 400px;
                 display: flex;
                 flex-direction: column;
             }
@@ -102,6 +103,12 @@ h4{
         .imgThree{
             background-image: url(./img/playerMage.png);
         }
+    #bottomPart{
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+    }
     #botPart{
         width: 500px;
         display: flex;
@@ -114,14 +121,16 @@ h4{
 #textScreen{
     display: none;
     width: 900px;
-    height: 1000px;
-    /* display: flex; */
+    height: 600px;
     align-items: center;
     text-align: center;
+    margin-bottom: 200px;
 }
 /*---- Gamme Screen ----*/
 .container{
+    transform: scale(80%);
     margin: 0 auto;
+    margin-top: -50px;
     display: none;
     justify-content: space-around;
     align-items: center;
@@ -289,6 +298,12 @@ h4{
             position:absolute;
             margin: 0 350px 0 0;
         }
+            #miniMonsterLogHP{
+                display: none;
+                position: absolute;
+                margin-top: -75px;
+                margin-right: 75px;
+            }
             .monsterHeart div{
                 margin: 51px 48px;
                 position:absolute;
@@ -380,26 +395,43 @@ h4{
     .mid{
         height: 600px;
         width: 400px;
-        display: flex;
         align-items: center;
-        justify-content: space-around;
         flex-direction: column;
     }
         #log-top{
             text-align: center;
-            height: 40px;
+            height: 100px;
         }
         #log-bot{
-            height: 100px;
+            position: absolute;
+            width: 400px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;        
         }
+            #endTurn{
+                position: absolute;
+                margin-top: 340px;
+                width: 190px;
+                height: 74px;
+                border: 0;
+                border-radius: 10%;
+                color: white;
+                background-image: url(./img/buttons.png);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+                #endTurn:hover{
+                    transform: scale(105%);
+                    background-color: #440a08;
+                }
         #notYourTurn{
             height: 100px;
             margin-top: 15px;
         }
         .d20{
-            margin-top: 100px;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -412,23 +444,7 @@ h4{
                 height: 290px;
                 width: 260px;
             }
-    #endTurn{
-        position: absolute;
-        margin-top: 968px;
-        width: 190px;
-        height: 74px;
-        border: 0;
-        border-radius: 10%;
-        color: white;
-        background-image: url(./img/buttons.png);
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-        #endTurn:hover{
-            transform: scale(105%);
-            background-color: #440a08;
-        }
+    
 /* Death Scream */
 #deadScreen{
     height: 1000px;

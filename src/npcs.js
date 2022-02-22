@@ -35,7 +35,8 @@ class Items {
     armor(){
         switch(this.name){
             case "Enchanted Armor":
-                bottomLog.innerHTML += `<br/><span id="armourText">You found a set of Enchanted Armor. AC Increased by 3.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="armourText">You found a set of Enchanted Armor. AC Increased by 3.</span>`;
                 $("#armourText").css("color", "blue")
                 player.armorClass += 3
             setTimeout(() => {
@@ -49,7 +50,8 @@ class Items {
             break;
 
             case "Ancient Armor":
-                bottomLog.innerHTML += `<br/><span id="armourText">You found a set of Ancient Armor. AC Increased by 3.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="armourText">You found a set of Ancient Armor. AC Increased by 3.</span>`;
                 $("#armourText").css("color", "red")
                 player.armorClass += 3
             setTimeout(() => {
@@ -63,9 +65,10 @@ class Items {
             break;
 
             case "Divine Armor":
-                bottomLog.innerHTML += `<br/><span id="armourText">The goddess blessed your amor, and it turned divine.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="armourText">The goddess blessed your amor, and it turned divine.</span>`;
                 $("#armourText").css("color", "rgb(255, 234, 0)")
-                $("#armourText").css("background-color", "black")
+                $("#armourText").css("text-shadow", "0 0 15px black")
                 player.armorClass = 23
             setTimeout(() => {
                 $("#logAC").animate({
@@ -82,7 +85,8 @@ class Items {
     weapons() {
         switch (this.name) {
             case "Silver Weapon":
-                bottomLog.innerHTML += `<br/><span id="weaponID">You found a Silver Weapon.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="weaponID">You found a Silver Weapon.</span>`;
                 $("#weaponID").css("color", "gray")
                 player.attack.damage = [1, 10]
                 player.attack.mod.toHit += 2
@@ -99,14 +103,16 @@ class Items {
                 break;
 
             case "Obsidian Weapon":
-                bottomLog.innerHTML += `<br/><span id="weaponID">You found an Obsidian Weapon.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="weaponID">You found an Obsidian Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(93,57,84)")
                 player.attack.damage = [2, 12]
                 player.attack.mod.toHit = 12
                 player.attack.mod.toDamage = 6
                 
                 setTimeout(() => {
-                    logSTG.innerHTML = "+" + player.attack.mod.toHit
+                    logSTG.innerHTML = 
+                        "+" + player.attack.mod.toHit;
                     $("#logSTG").animate({
                         color:"rgb(93,57,84)",
                     }, 10)
@@ -116,7 +122,8 @@ class Items {
                 break;
 
             case "Scarlet Weapon":
-                bottomLog.innerHTML += `<br/><span id="weaponID">You found a Scarlet Weapon.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="weaponID">You found a Scarlet Weapon.</span>`;
                 $("#weaponID").css("color", "red")
                 player.attack.damage = [1, 6]
                 player.attack.mod.toHit = 14
@@ -133,14 +140,16 @@ class Items {
                 break;
 
             case "Enchanted Weapon":
-                bottomLog.innerHTML += `<br/><span id="weaponID">You found an Enchanted Weapon.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="weaponID">You found an Enchanted Weapon.</span>`;
                 $("#weaponID").css("color", "blue")
                 player.attack.damage = [1, 8]
                 player.attack.mod.toHit = 13
                 player.attack.mod.toDamage = 7
                 
                 setTimeout(() => {
-                    logSTG.innerHTML = "+" + player.attack.mod.toHit
+                    logSTG.innerHTML = 
+                        "+" + player.attack.mod.toHit;
                     $("#logSTG").animate({
                         color:"blue",
                     }, 10)
@@ -150,9 +159,10 @@ class Items {
                 break;
 
             case "Divine Weapon":
-                bottomLog.innerHTML += `<br/><span id="weaponID">The Goddess blessed your weapon into a Divine Weapon.</span>`
+                bottomLog.innerHTML += 
+                    `<br/><span id="weaponID">The Goddess blessed your weapon into a Divine Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(255, 234, 0)")
-                $("#weaponID").css("background-color", "black")
+                $("#weaponID").css("text-shadow", "0 0 15px black")
                 player.attack.damage = [4, 12]
                 player.attack.mod.toHit = 16
                 player.attack.mod.toDamage = 10
@@ -173,7 +183,8 @@ class Items {
         switch (this.name) {
             case "HalfPotionHP":
                 player.hitPoints += 5
-                bottomLog.innerHTML += `<br/><h4 id="hPotion">You found half a Health Potion.</br> Hit Points restored by 5.</h4>`
+                bottomLog.innerHTML += 
+                    `<br/><h4 id="hPotion">You found half a Health Potion.</br> Hit Points restored by 5.</h4>`;
                 $("#hPotion").css("color", "green")
                 //Hit points restore animation
                 
@@ -192,7 +203,8 @@ class Items {
 
             case "FullPotionHP":
                 player.hitPoints += 10
-                bottomLog.innerHTML += `<br/><h4 id="hPotion">You found a Full Health Potion.</br> Hit Points restored by 10.</h4>`
+                bottomLog.innerHTML += 
+                    `<br/><h4 id="hPotion">You found a Full Health Potion.</br> Hit Points restored by 10.</h4>`;
                 $("#hPotion").css("color", "green")
                 //Hit points restore animation
                 
@@ -211,9 +223,10 @@ class Items {
 
                 case "Divine Heal":
                 player.hitPoints += 10
-                bottomLog.innerHTML += `<br/><h4 id="hPotion">The Goddess restored and enhanced your Health.</h4>`
+                bottomLog.innerHTML += 
+                    `<br/><h4 id="hPotion">The Goddess restored and enhanced your Health.</h4>`;
                 $("#hPotion").css("color", "rgb(255, 234, 0)")
-                $("#hPotion").css("background-color", "black")
+                $("#hPotion").css("text-shadow", "0 0 15px black")
                 //Hit points restore animation
                 
                 $(".heart").animate({
@@ -232,7 +245,8 @@ class Items {
     }
 
     gold() {
-        bottomLog.innerHTML += `<br/><span id="goldBag">You found a small bag of gold.</span>`
+        bottomLog.innerHTML += 
+            `<br/><span id="goldBag">You found a small bag of gold.</span>`;
         $("#goldBag").css("color", "rgb(155,135,12)");
         addMusic("gold", false);
     }

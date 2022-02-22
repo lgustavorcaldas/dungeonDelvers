@@ -1,0 +1,17 @@
+Workflow Dungeon Delvers:
+Correções:
+// - Tamanho dos elementos, basicamente tem que dar zoom out ate 67% pra funcionar (podemos ou mexer no tamanho, ou adicionar algo que ja da esse zoom out automatico)
+// - O bottomLog de combate precisa ser corrigido, tem coisa que adiciona texto ali (tipo o The NPC is Dead), ai precisava olhar pra ver como fica melhor
+- pra apresentacao, talvez diminuir os setTimeouts que tem, pra dar pra aproveitar melhor o tempo
+- Balanceamento, pq ta muito dificil chegar na manticora, e impossivel matar ela, ai dar um reabalance
+
+Implementações
+- Float Damage Numbers quando alguem tomar dano na cartinha;
+
+- 1 botao com uma habilidade especial de cada classe (Shield Wall pro warrior, Execute pro slayer, Magic Blast pra mage, ai a gente faz os efeitinhos especiais)
+- 1 botao de usar item (talvez pra dar usar um fade out nos botoes que ja existem e dar fade in em botoes que usam items, e fazer eles desaparecerem depois de usar, ai da pra pensar)
+- Algoritmo de roguelite, gerando diferentes monstros por niveis
+- Adicionar um icone com o dano de cada personagem ali na carta, pra nao ficar so o modificador toHit, e pegar o damage mesmo;
+
+Modificações
+- Revisar o botomLog, pra gente conseguir encaixar os textos narrativos e os items em um outro lugar e as coisas nao se misturarem de forma confusa

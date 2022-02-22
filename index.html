@@ -37,11 +37,13 @@
                 <span id="imgThreeTitle">Mage</span>
             </div>
         </div>
-        <div id="botPart">
-            <h2 for="name">Insert Your Name:</h2>
-            <input type="text" id="name">
+        <div id="bottomPart">
+            <div id="botPart">
+                <h2 for="name">Insert Your Name:</h2>
+                <input type="text" id="name">
+            </div>
+            <button id="start"  onclick="startGame()"><h2>Explore Dungeon</h2></button>
         </div>
-        <button id="start"  onclick="startGame()"><h2>Explore Dungeon</h2></button>
     </section>
 <!-- Text Screen -->
     <section id="textScreen">
@@ -59,6 +61,7 @@
                         <div>
                             <span>HP</span>
                             <h1 id="logHP">32</h1>
+                            <h2 id="miniLogHP">-4</h2>
                         </div>
                         <img src="./img/heart.png" id="heart">
                     </div>
@@ -99,8 +102,8 @@
             </div>
             <div id="log-bot">
                 <h2> <span id="bottomLog"></span> </h2>
+                <button id="endTurn"  onclick="endTurn()"><h2>Monster's Turn</h2></button>
             </div>
-            <button id="endTurn"  onclick="endTurn()"><h2>Monster's Turn</h2></button>
             <h1 id="notYourTurn"></h1>
         </section>
         <section id="left">
@@ -113,6 +116,7 @@
                         <div>
                             <span>HP</span>
                             <h1 id="monsterLogHP"></h1>
+                            <h2 id="miniMonsterLogHP">-4</h2>
                         </div>
                         <img src="./img/heart.png" id="monsterHeart">
                     </div>
