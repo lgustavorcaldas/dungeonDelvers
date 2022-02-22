@@ -161,6 +161,7 @@ function typeOfAttack(num) {
     }
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
+        $("#endTurn").css("display", "none");
         setTimeout(() => {
             $(".monster").fadeOut();
             addMusic("triumph", false);
@@ -265,7 +266,7 @@ function typeOfAttack(num) {
                         `<br/><span>While exploring, you noticed the sparks of remaining dark energy in the atmosphere.</span>`;
                     //Owlbear Rewards
                     enchantedArmor.armor();
-                    FullPotionHP.potion()
+                    FullPotionHP.potion();
                     //End of Owlbear Rewards
                     //Owlbear Battle Music
                     addMusic("bearbattle", true);
@@ -275,9 +276,9 @@ function typeOfAttack(num) {
                     //Piece of Lore
                     bottomLog.innerHTML += 
                         `<br/><span>New evidence of the old rituals grabs your attention. You go through more old books, and you read the name "Souleater" througout many of them. It seems like this "Souleater" created a more powerfull version of the enslavement spell.</span>`;
-                    bookSFX.book()
+                    bookSFX.book();
                     //Manticore Rewards
-                    let randomizeItem = randomize(1, 7)
+                    let randomizeItem = randomize(1, 7);
                     if (randomizeItem <= 2) {
                         obsidianWeapon.weapons();
                     } else if (randomizeItem > 2 && randomizeItem <= 4) {
@@ -354,8 +355,8 @@ function endTurn() {
     $(".buttonsAttk").each(function () {
         this.style.display = "block";
     })
-
     $("#endTurn").css("display", "none");
+
     return setTimeout(() => {
         $(`#logHP`).html(
             player.hitPoints);
