@@ -60,11 +60,17 @@ function startGame() {
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value;
     
     rollForInitiative();
-    $("#monsterName").html(arrMonster[level].name);
-    $("#playerName").html(player.name);
-    $(`#logHP`).html(player.hitPoints);
-    $(`#logAC`).html(player.armorClass);
-    $(`#logSTG`).html(`+${player.attack.mod.toHit}`);
+    $("#monsterName").html(
+        arrMonster[level].name);
+    $("#playerName").html(
+        player.name);
+    $(`#logHP`).html(
+        player.hitPoints);
+    $(`#logAC`).html(
+        player.armorClass);
+    $(`#logSTG`).html(
+        `+${player.attack.mod.toHit}`);
+
     $("#textScreen").fadeIn();
     $(".musicplayer").remove();
     addMusic("transition", false);
@@ -320,20 +326,23 @@ function typeOfAttack(num) {
             monster();
             $(".monster").fadeIn();
             rollForInitiative();
-            $("#monsterName").html(arrMonster[level].name);
+            $("#monsterName").html(
+                arrMonster[level].name);
             $('#nameAttacker').html(
                 `<span>New monster incoming...</span></br><span>It's a ${arrMonster[level].name}.</span>`);
         }, 5000);
     } else {
         return setTimeout(() => {
-            $(`#monsterLogHP`).html(arrMonster[level].hitPoints);
+            $(`#monsterLogHP`).html(
+                arrMonster[level].hitPoints);
         }, 4000);
     }
 };
 
 //Termina o turno do jogadora, passando para o ataque do monstro
 function endTurn() {
-    if (arrMonster[level].hitPoints <= 0) return $("#notYourTurn").html(`The Monster is Dead`);
+    if (arrMonster[level].hitPoints <= 0) return $("#notYourTurn").html(
+        `The Monster is Dead`);
 
     if (turno == true) return notYourTurn(arrMonster[level].name);
     $("#notYourTurn").html(
@@ -348,7 +357,8 @@ function endTurn() {
 
     $("#endTurn").css("display", "none");
     return setTimeout(() => {
-        $(`#logHP`).html(player.hitPoints);
+        $(`#logHP`).html(
+            player.hitPoints);
         if (player.hitPoints <= 0) {
             setTimeout(() => {
                 $(".container").fadeOut();
@@ -366,13 +376,17 @@ function endTurn() {
 };
 
 function notYourTurn(x) {
-    $("#notYourTurn").html(`It's not ${x} turn!`);
+    $("#notYourTurn").html(
+        `It's not ${x} turn!`);
 };
 //Função que gera os monstros de forma dinâmica
 function monster() {
-    $(`#monsterLogHP`).html(arrMonster[level].hitPoints);
-    $(`#monsterLogAC`).html(arrMonster[level].armorClass);
-    $(`#monsterLogSTR`).html(`+${arrMonster[level].attack.mod.toHit}`);
+    $(`#monsterLogHP`).html(
+        arrMonster[level].hitPoints);
+    $(`#monsterLogAC`).html(
+        arrMonster[level].armorClass);
+    $(`#monsterLogSTR`).html(
+        `+${arrMonster[level].attack.mod.toHit}`);
     $(`.monsterPic`).css("background-image", `url(./img/${arrMonster[level].name}.png)`)
 }
 monster();
