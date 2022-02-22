@@ -4,8 +4,9 @@ const logD20 = document.getElementById("logD20");
 
 //Função de ataque, recebe como parametros o atacante, quem recebe o ataque e qual o tipo de ataque usado
 function attack(attacker, receiver, how){
-    console.log(`${attacker.name} is trying to attack ${receiver.name}`);
-    nameAttacker.innerHTML = `<span>${attacker.name} is trying to attack ${receiver.name}</span>`;
+    console.log(`${attacker.name} is trying to attack ${receiver.name}.`);
+    nameAttacker.innerHTML = 
+        `<span>${attacker.name} is trying to attack ${receiver.name}.</span>`;
 
     let attack = rollAttack(attacker);
 
@@ -21,13 +22,15 @@ function attack(attacker, receiver, how){
 
     setTimeout(() => {
         console.log(`They roll ${attack.hit} to hit`);
-        bottomLog.innerHTML =`<span>They roll ${attack.hit} to hit</span>`;
+        bottomLog.innerHTML =
+            `<span>They roll ${attack.hit} to hit.</span>`;
     }, 1000);
 
     if(attack.hit >= caToBeat){
         setTimeout(() => {
             console.log(`HIT!! Doing ${attack.damage} damage to ${receiver.name}`);
-            bottomLog.innerHTML +=`<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}</span>`; 
+            bottomLog.innerHTML +=
+                `<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}.</span>`; 
             if(attacker == player){
                 $(".monsterCard").effect("pulsate");
                 addMusic("playerhit", false);
@@ -42,20 +45,23 @@ function attack(attacker, receiver, how){
         receiver.hitPoints -= attack.damage;
         if(receiver.hitPoints <= 0){
             return setTimeout(() => {
-                console.log(`${receiver.name} has died!!!!`);
-                bottomLog.innerHTML +=`<br/><span>${receiver.name} has died!!!!</span>`
+                console.log(`${receiver.name} has died.`);
+                bottomLog.innerHTML +=
+                    `<br/><span>${receiver.name} has died.</span>`;
             }, 3000);
         } else{
             return setTimeout(() => {
                 console.log(`${receiver.name} was at ${hpBefore} and now has ${receiver.hitPoints}`);
-                bottomLog.innerHTML +=`<br/><span>${receiver.name} was at ${hpBefore} and now has ${receiver.hitPoints}</span>`;
+                bottomLog.innerHTML +=
+                    `<br/><span>${receiver.name} was at ${hpBefore} and now has ${receiver.hitPoints}.</span>`;
             }, 3000);
         }
     } else{
         return setTimeout(() => {
             addMusic("miss", false);
             console.log("Misses!");
-            bottomLog.innerHTML +=`<br/><h2>Misses!</h2>`;
+            bottomLog.innerHTML +=
+                `<br/><h2>Misses.</h2>`;
         }, 2000);
     }
 }
@@ -67,7 +73,8 @@ function rollAttack(attackerRolling){
 
     if(hit - attackerRolling.attack.mod.toHit == 20){
         console.log("CRITICAL HIT!");
-        bottomLog.innerHTML +=`<h3>CRITICAL HIT!</h3>`;
+        bottomLog.innerHTML +=
+            `<h3>CRITICAL HIT.</h3>`;
         damage = 2 * damage;
     }
     return {hit,damage};
