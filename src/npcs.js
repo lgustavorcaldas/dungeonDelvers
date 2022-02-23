@@ -305,14 +305,14 @@ arrMonster.push(new Enemies("Rat", 6000, 8, 2, { "name": "bite", "mod": { "toHit
 
 arrMonster.push(new Enemies("Goblin", 13, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 
-arrMonster.push(new Enemies("Wolf", 18, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [2, 4] }));
+arrMonster.push(new Enemies("Wolf", 18, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [1, 6] }));
 
 arrMonster.push(new Enemies("GiantSpider", 24, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
 
-arrMonster.push(new Enemies("Owlbear", 40, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 4 }, "toHit": 20, "damage": [2, 9] }));
+arrMonster.push(new Enemies("Owlbear", 38, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 3 }, "toHit": 20, "damage": [1, 12] }));
 
-arrMonster.push(new Enemies("Manticore", 56, 20, 2, { "name": "claws", "mod": { "toHit": 9, "toDamage": 5 }, "toHit": 20, "damage": [3, 10] }));
+arrMonster.push(new Enemies("Manticore", 56, 20, 2, { "name": "claws", "mod": { "toHit": 9, "toDamage": 3 }, "toHit": 20, "damage": [2, 8] }));
 
-arrMonster.push(new Enemies("Behemoth", 69, 22, 3, { "name": "claws", "mod": { "toHit": 12, "toDamage": 7 }, "toHit": 20, "damage": [4, 10] }));
+arrMonster.push(new Enemies("Behemoth", 69, 22, 3, { "name": "claws", "mod": { "toHit": 12, "toDamage": 7 }, "toHit": 20, "damage": [3, 6] }));
 
-arrMonster.push(new Enemies("Dragon", 100, 27, 1, { "name": "claws", "mod": { "toHit": 15, "toDamage": 9 }, "toHit": 20, "damage": [6, 12] }));
+arrMonster.push(new Enemies("Dragon", 100, 27, 1, { "name": "claws", "mod": { "toHit": 15, "toDamage": 9 }, "toHit": 20, "damage": [3, 10] }));

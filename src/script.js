@@ -1,6 +1,6 @@
 let turno = true;
 let level = 0;
-let caracter = 0;
+let character = 0;
 let player;
 let random;
 
@@ -46,7 +46,7 @@ $(".imgOne").click(function () {
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(100%)");
     addMusic("warriorselection", false);
-    caracter = "Warrior";
+    character = "Warrior";
 });
 $(".imgTwo").click(function () {
     console.log("Two");
@@ -55,7 +55,7 @@ $(".imgTwo").click(function () {
     $(".imgTwo").css("transform", "scale(110%)");
     $(".imgThree").css("transform", "scale(100%)");
     addMusic("slayerselection", false);
-    caracter = "Slayer";
+    character = "Slayer";
 });
 $(".imgThree").click(function () {
     console.log("Three");
@@ -64,17 +64,17 @@ $(".imgThree").click(function () {
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(110%)");
     addMusic("wizardselection", false);
-    caracter = "Mage";
+    character = "Mage";
 });
 
 //Inicia o jogo após seleção de personagens
 function startGame() {
-    if( caracter == "Warrior"){
+    if(character == "Warrior"){
         player = new Players("Chesterfield", 28, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
-    } else if( caracter == "Mage"){
-        player = new Players("Chesterfield", 22, 12, 3, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 8] });
+    } else if( character == "Mage"){
+        player = new Players("Chesterfield", 22, 13, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 5 }, "toHit": 20, "damage": [1, 4] });
     } else{
-        player = new Players("Chesterfield", 34, 13, 6, { "name": "sword", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 8] });
+        player = new Players("Chesterfield", 34, 12, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 10] });
     } 
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value;
     
