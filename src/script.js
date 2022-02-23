@@ -181,7 +181,10 @@ function typeOfAttack(num) {
     }
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
-        return nextEvent()
+        setTimeout(() => {
+            return nextEvent()
+        }, 1500)
+        
     } else {
         return setTimeout(() => {
             $(`#monsterLogHP`).html(

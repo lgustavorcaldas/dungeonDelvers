@@ -73,10 +73,9 @@ function attack(attacker, receiver, how){
         }
     } else{
         return setTimeout(() => {
+            bottomLog.innerHTML += `<br/><h2>Misses.</h2>`;
             addMusic("miss", false);
             console.log("Misses!");
-            bottomLog.innerHTML +=
-                `<br/><h2>Misses.</h2>`;
         }, 2000);
     }
 }
