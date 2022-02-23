@@ -154,7 +154,8 @@ function rollForInitiative() {
         } else {
             rollForInitiative();
         }
-    }, 1000);
+    }, 500);
+    // 1000
 }
 
 //Botão de ataque com progressão, trocando os inimigos e a tela
@@ -183,13 +184,15 @@ function typeOfAttack(num) {
     if (arrMonster[level].hitPoints <= 0) {
         setTimeout(() => {
             return nextEvent()
-        }, 1500)
+        }, 500)
+        // 1500
         
     } else {
         return setTimeout(() => {
             $(`#monsterLogHP`).html(
                 arrMonster[level].hitPoints);
-        }, 4000);
+        }, 500);
+        // 4000
     }
 };
 function nextEvent(){
@@ -339,7 +342,8 @@ function nextEvent(){
                 $(".musicplayer").remove();
                 addMusic("youwin", true);
             }
-        }, 5000);
+        }, 500);
+        // 5000
         level++;
         monster();
         $(".monster").fadeIn();
@@ -348,7 +352,8 @@ function nextEvent(){
             arrMonster[level].name);
         $('#nameAttacker').html(
             `<span>New monster incoming...</span></br><span>It's a ${arrMonster[level].name}.</span>`);
-    }, 5000);
+    }, 500);
+    // 5000
 }
 //Termina o turno do jogadora, passando para o ataque do monstro
 function endTurn() {
@@ -381,9 +386,11 @@ function endTurn() {
                 $("#points").html(
                     `You have reached level ${level}`
                     );
-            }, 4000);
+            }, 500);
+            // 4000
         }
-    }, 3000);
+    }, 500);
+    // 3000
 };
 
 function notYourTurn(x) {
