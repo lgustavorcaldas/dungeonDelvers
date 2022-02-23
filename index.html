@@ -83,9 +83,57 @@
                     <div class="pic"> </div>
                 </div>
                 <div class="buttons">
-                    <button class="buttonsAttk" onclick="typeOfAttack(0)"><h2>Fast Attk</h2></button>
-                    <button class="buttonsAttk" onclick="typeOfAttack()"><h2>Normal Attk</h2></button>
-                    <button class="buttonsAttk" onclick="typeOfAttack(1)"><h2>Strong Attk</h2></button>
+                    <nav>
+                        <div class="nav-content">
+                            <div class="toggle-btn">
+                                <i class='bx bx-plus'></i>
+                            </div>
+                            <span style="--i:1;">
+                                <a href="#" title="Fast Attack"><i class='bx bxs-home'>A</i></a>
+                            </span>
+                            <span style="--i:2;">
+                                <a href="#" title="Normal Attack"><i class='bx bxs-camera'>B</i></a>
+                            </span>
+                            <span style="--i:3;">
+                                <a href="#" title="Strong Attack"><i class='bx bxs-alarm' >C</i></a>
+                            </span>
+                        </div>
+                    </nav>
+                    <nav id="navII">
+                        <div class="nav-content">
+                            <div id="toggleBtnII">
+                                <i class='bx bx-plus'></i>
+                            </div>
+                            <span style="--i:1;">
+                                <a href="#" title="Magic Attack"><i class='bx bxs-home'>AA</i></a>
+                            </span>
+                            <span style="--i:2;">
+                                <a href="#" title="Penis Attack"><i class='bx bxs-camera'>BB</i></a>
+                            </span>
+                            <span style="--i:3;">
+                                <a href="#" title="Ass Attack"><i class='bx bxs-alarm' >CC</i></a>
+                            </span>
+                        </div>
+                    </nav>
+                    <nav id="navIII">
+                        <div class="nav-content">
+                            <div id="toggleBtnIII">
+                                <i class='bx bx-plus'></i>
+                            </div>
+                            <span style="--i:1;">
+                                <a href="#" title="Magic Attack"><i class='bx bxs-home'>AAA</i></a>
+                            </span>
+                            <span style="--i:2;">
+                                <a href="#" title="Penis Attack"><i class='bx bxs-camera'>BBB</i></a>
+                            </span>
+                            <span style="--i:3;">
+                                <a href="#" title="Ass Attack"><i class='bx bxs-alarm' >CCC</i></a>
+                            </span>
+                            <span style="--i:4;">
+                                <a href="#" title="Ass Attack" onclick="typeOfAttack(0)"><i class='bx bxs-alarm' >D</i></a>
+                            </span>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </section>
@@ -101,7 +149,7 @@
             </div>
             <div id="log-bot">
                 <h2> <span id="bottomLog"></span> </h2>
-                <button id="endTurn"  onclick="endTurn()"><h2>Monster's Turn</h2></button>
+                <button id="endTurn"  onclick="endTurn()"></button>
             </div>
             <h1 id="notYourTurn"></h1>
         </section>

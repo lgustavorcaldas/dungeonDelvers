@@ -1,7 +1,7 @@
 let turno = true;
 let level = 0;
 let character = 0;
-let player;
+let player = "Slayer";
 let random;
 
 //Botão de iniciar
@@ -125,7 +125,6 @@ function startGame() {
 function randomize(min, max) {
     return Math.random() * ((max - min) - 1);
 };
-
 //Rola a iniciativa, decidindo a ordem dos turnos
 function rollForInitiative() {
     bottomLog.innerHTML = 
@@ -138,26 +137,48 @@ function rollForInitiative() {
         if (playerInitiative > monsterInitiative) {
             turno = true;
             $("#endTurn").css("display", "none");
-            $(".buttonsAttk").each(function () {
-                this.style.display = "block";
-            })
+            $(".buttons").css("display", "flex");
+
             bottomLog.innerHTML += 
                 `</br> ${player.name}'s Turn.`;
         } else if (playerInitiative < monsterInitiative) {
             turno = false;
-            $(".buttonsAttk").each(function () {
-                this.style.display = "none";
-            })
-            $("#endTurn").css("display", "block");
+            $(".buttons").css("display", "none");
+            $("#endTurn").css("display", "flex");
+            
             bottomLog.innerHTML += 
                 `</br> ${arrMonster[level].name}'s Turn.`;
         } else {
             rollForInitiative();
         }
     }, 500);
-    // 1000
+    // 1000~
 }
+// 
+const nav = document.querySelector("nav")
+const toggleBtn = document.querySelector(".toggle-btn");
+toggleBtn.addEventListener("click" , () =>{
+    nav.classList.toggle("open");
+    navII.classList.remove("open");
+    navIII.classList.remove("open");
+});
 
+const navII = document.querySelector("#navII")
+const toggleBtnII = document.querySelector("#toggleBtnII")
+toggleBtnII.addEventListener("click" , () =>{
+    nav.classList.remove("open");
+    navII.classList.toggle("open");
+    navIII.classList.remove("open");
+});
+
+const navIII = document.querySelector("#navIII")
+const toggleBtnIII = document.querySelector("#toggleBtnIII")
+toggleBtnIII.addEventListener("click" , () =>{
+    nav.classList.remove("open");
+    navII.classList.remove("open");
+    navIII.classList.toggle("open");
+});
+// 
 //Botão de ataque com progressão, trocando os inimigos e a tela
 function typeOfAttack(num) {
     if (turno == false) return notYourTurn("your");
@@ -165,10 +186,9 @@ function typeOfAttack(num) {
         ``);
     turno = false;
     diceRoll()
-    $(".buttonsAttk").each(function () {
-        this.style.display = "none";
-    })
-    $("#endTurn").css("display", "block");
+    
+    $(".buttons").css("display", "none");
+    $("#endTurn").css("display", "flex");
 
     $("#notYourTurn").html(
         ``);
@@ -367,9 +387,7 @@ function endTurn() {
     attack(arrMonster[level], player, "normal");
 
     turno = true;
-    $(".buttonsAttk").each(function () {
-        this.style.display = "block";
-    })
+    $(".buttons").css("display", "flex");
     $("#endTurn").css("display", "none");
 
     return setTimeout(() => {
