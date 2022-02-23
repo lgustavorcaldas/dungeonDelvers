@@ -70,11 +70,11 @@ $(".imgThree").click(function () {
 //Inicia o jogo após seleção de personagens
 function startGame() {
     if(character == "Warrior"){
-        player = new Players("Chesterfield", 28, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
+        player = new Players("Chesterfield", 100, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 8] });
     } else if( character == "Mage"){
-        player = new Players("Chesterfield", 22, 13, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 5 }, "toHit": 20, "damage": [1, 4] });
+        player = new Players("Chesterfield", 92, 13, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 5 }, "toHit": 20, "damage": [1, 12] });
     } else{
-        player = new Players("Chesterfield", 34, 12, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 10] });
+        player = new Players("Chesterfield", 120, 12, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [2, 6] });
     } 
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value;
     

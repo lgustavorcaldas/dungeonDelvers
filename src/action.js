@@ -42,12 +42,12 @@ function attack(attacker, receiver, how){
                 }else {
                     addMusic("wizardhit", false);
                 }
-                floatingDamage(attack.damage, `floatingDmgMonster`)
+                floatingText("-" + attack.damage, "floatingTextMonster", "red")
                 $("#blabla").effect("pulsate")
                 $(`#monsterLogHP`).effect("pulsate")
                 $(".monsterCard").effect("pulsate");
             } else{
-                floatingDamage(attack.damage, `floatingDmgPlayer`)
+                floatingText("-" + attack.damage, "floatingTextPlayer", "red")
                 $("#blabla").effect("pulsate")
                 $(`#logHP`).effect("pulsate")
                 $(".card").effect("pulsate");

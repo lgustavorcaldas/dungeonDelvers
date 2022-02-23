@@ -10,13 +10,13 @@ function addMusic(name,loop){
     }).appendTo("body");
 };
 
-function floatingDamage(damage, id){
-    $(`<h2 id="blabla">-${damage}</h2>`).css({
+function floatingText(damage, id, color){
+    $(`<h2 id="blabla">${damage}</h2>`).css({
         "display": "none",
         "position": "absolute",
         "margin-top": "0px",
         "margin-right": "75px",
-        "color": "red",
+        "color": color,
         "text-shadow":"-2px 2px 0px black",
         "font-size": "50px"
     }).appendTo(`#${id}`);
@@ -49,7 +49,7 @@ class Players {
         this.attack = _attack;
     };
 };
-class Items {
+class Loot {
     constructor(_name) {
         this.name = _name;
     }
@@ -127,7 +127,7 @@ class Items {
                 bottomLog.innerHTML += 
                     `<br/><span id="weaponID">You found an Obsidian Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(93,57,84)")
-                player.attack.damage = [2, 12]
+                player.attack.damage = [2, 10]
                 player.attack.mod.toHit = 12
                 player.attack.mod.toDamage = 6
                 
@@ -146,7 +146,7 @@ class Items {
                 bottomLog.innerHTML += 
                     `<br/><span id="weaponID">You found a Scarlet Weapon.</span>`;
                 $("#weaponID").css("color", "red")
-                player.attack.damage = [1, 6]
+                player.attack.damage = [2, 8]
                 player.attack.mod.toHit = 14
                 player.attack.mod.toDamage = 8
                 
@@ -164,7 +164,7 @@ class Items {
                 bottomLog.innerHTML += 
                     `<br/><span id="weaponID">You found an Enchanted Weapon.</span>`;
                 $("#weaponID").css("color", "blue")
-                player.attack.damage = [1, 8]
+                player.attack.damage = [3, 4]
                 player.attack.mod.toHit = 13
                 player.attack.mod.toDamage = 7
                 
@@ -184,7 +184,7 @@ class Items {
                     `<br/><span id="weaponID">The Goddess blessed your weapon into a Divine Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(255, 234, 0)")
                 $("#weaponID").css("text-shadow", "0 0 15px black")
-                player.attack.damage = [4, 12]
+                player.attack.damage = [4, 10]
                 player.attack.mod.toHit = 16
                 player.attack.mod.toDamage = 10
                 
@@ -203,7 +203,7 @@ class Items {
     potion() {
         switch (this.name) {
             case "HalfPotionHP":
-                player.hitPoints += 5
+                player.hitPoints += 8
                 bottomLog.innerHTML += 
                     `<br/><h4 id="hPotion">You found half a Health Potion.</br> Hit Points restored by 5.</h4>`;
                 $("#hPotion").css("color", "green")
@@ -213,17 +213,18 @@ class Items {
                     color: "green",
                 }, 2500)
                 setTimeout(() => {
+                    floatingText("+" + 8, "floatingTextPlayer", "green")
                     logHP.innerHTML = player.hitPoints
                     addMusic("potionsound", false);
                 }, 2500)
-                $(".heart").effect("bounce")
+                $(".heart").effect("pulsate")
                 $(".heart").animate({
                     color: "black",
                 }, 5000)
                 break;
 
             case "FullPotionHP":
-                player.hitPoints += 10
+                player.hitPoints += 15
                 bottomLog.innerHTML += 
                     `<br/><h4 id="hPotion">You found a Full Health Potion.</br> Hit Points restored by 10.</h4>`;
                 $("#hPotion").css("color", "green")
@@ -233,17 +234,18 @@ class Items {
                     color: "green",
                 }, 2500)
                 setTimeout(() => {
+                    floatingText("+" + 16, "floatingTextPlayer", "green")
                     logHP.innerHTML = player.hitPoints
                     addMusic("potionsound", false);
                 }, 2500)
-                $(".heart").effect("bounce")
+                $(".heart").effect("pulsate")
                 $(".heart").animate({
                     color: "black",
                 }, 5000)
                 break;
 
                 case "Divine Heal":
-                player.hitPoints += 10
+                player.hitPoints += 60
                 bottomLog.innerHTML += 
                     `<br/><h4 id="hPotion">The Goddess restored and enhanced your Health.</h4>`;
                 $("#hPotion").css("color", "rgb(255, 234, 0)")
@@ -254,10 +256,11 @@ class Items {
                     color: "rgb(255, 234, 0)",
                 }, 2500)
                 setTimeout(() => {
+                    floatingText("+" + 60, "floatingTextPlayer", "gold")
                     logHP.innerHTML = player.hitPoints
                     addMusic("blessing", false);
                 }, 2500)
-                $(".heart").effect("bounce")
+                $(".heart").effect("pulsate")
                 $(".heart").animate({
                     color: "black",
                 }, 5000)
@@ -285,33 +288,33 @@ class Items {
     }
 }
 
-const bookSFX = new Items("")
-const floorCollapseSFX = new Items("")
-const goldSFX= new Items("Gold")
-const HalfPotionHP = new Items("HalfPotionHP")
-const FullPotionHP = new Items("FullPotionHP")
-const silverWeapon = new Items("Silver Weapon")
-const enchantedArmor = new Items("Enchanted Armor")
-const obsidianWeapon = new Items("Obsidian Weapon")
-const scarletWeapon = new Items("Scarlet Weapon")
-const enchantedWeapon = new Items("Enchanted Weapon")
-const ancientArmor = new Items("Ancient Armor")
-const divineWeapon = new Items("Divine Weapon")
-const divineArmor = new Items("Divine Armor")
-const divineHeal = new Items("Divine Heal")
+const bookSFX = new Loot("")
+const floorCollapseSFX = new Loot("")
+const goldSFX= new Loot("Gold")
+const HalfPotionHP = new Loot("HalfPotionHP")
+const FullPotionHP = new Loot("FullPotionHP")
+const silverWeapon = new Loot("Silver Weapon")
+const enchantedArmor = new Loot("Enchanted Armor")
+const obsidianWeapon = new Loot("Obsidian Weapon")
+const scarletWeapon = new Loot("Scarlet Weapon")
+const enchantedWeapon = new Loot("Enchanted Weapon")
+const ancientArmor = new Loot("Ancient Armor")
+const divineWeapon = new Loot("Divine Weapon")
+const divineArmor = new Loot("Divine Armor")
+const divineHeal = new Loot("Divine Heal")
 
 
-arrMonster.push(new Enemies("Rat", 6, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 12, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
-arrMonster.push(new Enemies("Goblin", 12, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Goblin", 24, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 
-arrMonster.push(new Enemies("Wolf", 18, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [1, 6] }));
+arrMonster.push(new Enemies("Wolf", 30, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [1, 6] }));
 
-arrMonster.push(new Enemies("GiantSpider", 24, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
+arrMonster.push(new Enemies("GiantSpider", 38, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [2, 6] }));
 
-arrMonster.push(new Enemies("Owlbear", 38, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 3 }, "toHit": 20, "damage": [1, 12] }));
+arrMonster.push(new Enemies("Owlbear", 42, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 3 }, "toHit": 20, "damage": [2, 8] }));
 
-arrMonster.push(new Enemies("Manticore", 56, 20, 2, { "name": "claws", "mod": { "toHit": 9, "toDamage": 3 }, "toHit": 20, "damage": [2, 8] }));
+arrMonster.push(new Enemies("Manticore", 50, 20, 2, { "name": "claws", "mod": { "toHit": 9, "toDamage": 3 }, "toHit": 20, "damage": [2, 10] }));
 
 arrMonster.push(new Enemies("Behemoth", 69, 22, 3, { "name": "claws", "mod": { "toHit": 12, "toDamage": 7 }, "toHit": 20, "damage": [3, 6] }));
 
