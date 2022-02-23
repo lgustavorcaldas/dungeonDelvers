@@ -352,7 +352,7 @@ function nextEvent(){
             arrMonster[level].name);
         $('#nameAttacker').html(
             `<span>New monster incoming...</span></br><span>It's a ${arrMonster[level].name}.</span>`);
-    }, 500);
+    }, 2000);
     // 5000
 }
 //Termina o turno do jogadora, passando para o ataque do monstro
@@ -386,11 +386,9 @@ function endTurn() {
                 $("#points").html(
                     `You have reached level ${level}`
                     );
-            }, 500);
-            // 4000
+            }, 4000);
         }
-    }, 500);
-    // 3000
+    }, 3000);
 };
 
 function notYourTurn(x) {
