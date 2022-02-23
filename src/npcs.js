@@ -18,19 +18,16 @@ function floatingDamage(damage, id){
         "margin-right": "75px",
         "color": "red",
         "text-shadow":"-2px 2px 0px black",
-        "font-size": "32px"
+        "font-size": "50px"
     }).appendTo(`#${id}`);
     $("#blabla").css("display","block")
-    
     $("#blabla").animate({
-         "left": "-25px",
-         "top": "-45px",
-    }, 2000)
-    
+        "left": "-55px",
+        "top": "-75px",
+    }, 2000);
     setTimeout(() => {
         $("#blabla").remove()
-    }, 2000)
-    
+    }, 2000);
 };
 
 // Class
@@ -304,18 +301,18 @@ const divineArmor = new Items("Divine Armor")
 const divineHeal = new Items("Divine Heal")
 
 
-arrMonster.push(new Enemies("Rat", 6, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 6000, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
-arrMonster.push(new Enemies("Goblin", 12, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Goblin", 13, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 
 arrMonster.push(new Enemies("Wolf", 18, 14, 2, { "name": "bite", "mod": { "toHit": 5, "toDamage": 1 }, "toHit": 20, "damage": [2, 4] }));
 
-arrMonster.push(new Enemies("GiantSpider", 200, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
+arrMonster.push(new Enemies("GiantSpider", 24, 16, 3, { "name": "bite", "mod": { "toHit": 6, "toDamage": 2 }, "toHit": 20, "damage": [1, 8] }));
 
 arrMonster.push(new Enemies("Owlbear", 40, 18, 1, { "name": "claws", "mod": { "toHit": 7, "toDamage": 4 }, "toHit": 20, "damage": [2, 9] }));
 
 arrMonster.push(new Enemies("Manticore", 56, 20, 2, { "name": "claws", "mod": { "toHit": 9, "toDamage": 5 }, "toHit": 20, "damage": [3, 10] }));
 
-arrMonster.push(new Enemies("Behemoth", 70, 22, 3, { "name": "claws", "mod": { "toHit": 12, "toDamage": 7 }, "toHit": 20, "damage": [4, 10] }));
+arrMonster.push(new Enemies("Behemoth", 69, 22, 3, { "name": "claws", "mod": { "toHit": 12, "toDamage": 7 }, "toHit": 20, "damage": [4, 10] }));
 
 arrMonster.push(new Enemies("Dragon", 100, 27, 1, { "name": "claws", "mod": { "toHit": 15, "toDamage": 9 }, "toHit": 20, "damage": [6, 12] }));

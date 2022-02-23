@@ -24,6 +24,9 @@ function attack(attacker, receiver, how){
         console.log(`They roll ${attack.hit} to hit`);
         bottomLog.innerHTML =
             `<span>They roll ${attack.hit} to hit.</span>`;
+        $("#logD20").fadeIn();
+        $("#logD20").css("color", "white");
+        $("#logD20").css("font-size", "50px");
     }, 1000);
 
     if(attack.hit >= caToBeat){
@@ -81,6 +84,11 @@ function rollAttack(attackerRolling){
         console.log("CRITICAL HIT!");
         bottomLog.innerHTML +=
             `<h3>CRITICAL HIT.</h3>`;
+        setTimeout(() => {
+            $("#logD20").animate({
+                "color": "#acaf00",
+                "font-size": "90px"},1000)
+        }, 1500);
         damage = 2 * damage;
     }
     return {hit,damage};
@@ -107,7 +115,10 @@ function rollToHit(attackerToHit){
     const witchDices = attackerToHit.attack.toHit;
 
     const valueOfRoll = Math.floor(((Math.random() * witchDices) + 1));
-    logD20.innerHTML = `${valueOfRoll}`;
+    setTimeout(() => {
+        logD20.innerHTML = 
+            `${valueOfRoll}`;
+    }, 1000);
     const hit = valueOfRoll + modToHit;
 
     return hit;

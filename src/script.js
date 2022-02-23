@@ -1,7 +1,8 @@
 let turno = true;
-let level = 3;
+let level = 0;
 let caracter = 0;
 let player;
+let random;
 
 //Botão de iniciar
 $("#gameStartBtn").click(function () {
@@ -18,6 +19,24 @@ $("#gameStartBtn").click(function () {
     }, 500)
     // 3500
 });
+
+function diceRoll(){
+    $("#logD20").fadeOut();
+    $('#20dice').removeAttr("style");
+    if(random == 720){
+        random = 1400
+    } else{
+        random = 720
+    };
+    $('#20dice').animate(
+        { deg: random },
+        { duration: 1500,
+            step: function(now) {
+                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+            }
+        }
+    );
+};
 
 //Seleção de personagem
 $(".imgOne").click(function () {
@@ -51,7 +70,7 @@ $(".imgThree").click(function () {
 //Inicia o jogo após seleção de personagens
 function startGame() {
     if( caracter == "Warrior"){
-        player = new Players("Chesterfield", 3000, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
+        player = new Players("Chesterfield", 28, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 6] });
     } else if( caracter == "Mage"){
         player = new Players("Chesterfield", 22, 12, 3, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [1, 8] });
     } else{
@@ -143,8 +162,8 @@ function typeOfAttack(num) {
     if (turno == false) return notYourTurn("your");
     $("#notYourTurn").html(
         ``);
-
     turno = false;
+    diceRoll()
     $(".buttonsAttk").each(function () {
         this.style.display = "none";
     })
@@ -335,6 +354,7 @@ function endTurn() {
     if (turno == true) return notYourTurn(arrMonster[level].name);
     $("#notYourTurn").html(
         ``);
+    diceRoll()
 
     attack(arrMonster[level], player, "normal");
 
