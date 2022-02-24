@@ -95,7 +95,8 @@ function attack(attacker, receiver, how){
         }
     } else{
         return setTimeout(() => {
-            bottomLog.innerHTML += `<br/><h2>Misses.</h2>`;
+            bottomLog.innerHTML += `<br/><h2 id="missAtk">Misses.</h2>`;
+            $("#missAtk").css("color", "red")
             addMusic("miss", false);
             console.log("Misses!");
         }, 2000);

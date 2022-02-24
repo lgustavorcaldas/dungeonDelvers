@@ -228,7 +228,7 @@ function typeOfAttack(num) {
         return setTimeout(() => {
             $(`#monsterLogHP`).html(
                 arrMonster[level].hitPoints);
-        }, 500);
+        }, 2000);
         // 4000
     }
 };
