@@ -10,6 +10,7 @@ function attack(attacker, receiver, how){
 
     let attack = rollAttack(attacker);
 
+
     if(how == "fast"){
         attack.damage -= 3;
         attack.hit += 3;        
@@ -37,7 +38,7 @@ function attack(attacker, receiver, how){
             if(attacker == player){
                 if(character == "Warrior"){
                     addMusic("warriorhit", false);
-                } else if(character == "Slayer"){
+                } else if(character == "Rogue"){
                     addMusic("slayerhit", false);
                 }else {
                     addMusic("wizardhit", false);
