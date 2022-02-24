@@ -1,6 +1,10 @@
 const arrMonster = [];
+let abilityTurnCounter = 0
+let spellUsed = 0
+let stealUsed = 0
+let rageUsed = 0
 // Music
-function addMusic(name,loop){
+function addMusic(name, loop) {
     $("<audio></audio>").attr({
         'class': 'musicplayer',
         'src': `./aud/${name}.mp3`,
@@ -10,17 +14,25 @@ function addMusic(name,loop){
     }).appendTo("body");
 };
 
-function floatingText(damage, id, color){
+function addAbilityButton() {
+    $(`<button><h2>Use Ability</button>`).attr({
+        "class": "buttonsAttk",
+        "id": "abilityBtn",
+        "onclick": "useAbility()",
+    }).appendTo(".buttons");
+}
+
+function floatingText(damage, id, color) {
     $(`<h2 id="blabla">${damage}</h2>`).css({
         "display": "none",
         "position": "absolute",
         "margin-top": "0px",
         "margin-right": "75px",
         "color": color,
-        "text-shadow":"-2px 2px 0px black",
+        "text-shadow": "-2px 2px 0px black",
         "font-size": "50px"
     }).appendTo(`#${id}`);
-    $("#blabla").css("display","block")
+    $("#blabla").css("display", "block")
     $("#blabla").animate({
         "left": "-55px",
         "top": "-75px",
@@ -29,6 +41,120 @@ function floatingText(damage, id, color){
         $("#blabla").remove()
     }, 2000);
 };
+
+function useAbility() {
+    player.firstAbility()
+    player.endFirstAbility()
+}
+
+function rogueStealReset() {
+    return stealUsed = 0
+}
+
+function randomizeRogueSteal(level) {
+    switch (level) {
+        case 0:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 1:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 2:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 3:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 4:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 5:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 6:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 7:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+        case 8:
+            randomizeItem = randomize(1, 11);
+            if (randomizeItem <= 2) {
+                //Looting gold effect
+                goldSFX.gold();
+            } else if (randomizeItem > 2) {
+                //Half-Potion effect
+                HalfPotionHP.potion();
+                console.log(player.hitPoints);
+            }
+            break;
+
+    }
+}
 
 // Class
 class Enemies {
@@ -41,82 +167,184 @@ class Enemies {
     };
 };
 class Players {
-    constructor(_nome, _hitPoints, _armorClass, _speed, _attack) {
+    constructor(_nome, _hitPoints, _armorClass, _speed, _attack, _type, _classResource) {
         this.name = _nome;
         this.hitPoints = _hitPoints;
         this.armorClass = _armorClass;
         this.speed = _speed;
         this.attack = _attack;
+        this.type = _type
+        this.classResource = _classResource
     };
+
+    firstAbility() {
+        switch (this.type) {
+            case "Warrior":
+                bottomLog.innerHTML +=
+                    `<br/><h4 id="abilityUse">You used Aimed Thrust! +3 chance to hit!</h4>`;
+                setTimeout(() => {
+                    $("#abilityBtn").remove();
+                    player.attack.mod.toHit += 3
+                    logSTG.innerHTML = "+" + player.attack.mod.toHit
+                    rageUsed = 1
+                }, 200)
+                break;
+
+            case "Rogue":
+                if (stealUsed == 0) {
+                    bottomLog.innerHTML +=
+                        `<br/><h4 id="abilityUse">While your enemy was distracted, you used Steal!</h4>`;
+                        $(".card").effect("slide")
+                        addMusic("rogueabilityone", false)
+                        setTimeout(() => {
+                            randomizeRogueSteal(level)
+                        }, 800)
+                    stealUsed = 1
+                    player.classResource -= 3
+                } else if (stealUsed == 1) {
+                    bottomLog.innerHTML =
+                        `<br/><h4 id="abilityUse">There's nothing to steal!</h4>`;
+                } else if (player.classResource <= 0) {
+                    bottomLog.innerHTML +=
+                        `<br/><h4 id="abilityUse">Out of resource!!</h4>`;
+                }
+                break;
+
+            case "Wizard":
+                if (player.classResource >= 3 && spellUsed == 0) {
+                    spellUsed = 1
+                    player.classResource -= 3
+                    player.armorClass += 2
+                    addMusic("wizardabilityone", false)
+                    bottomLog.innerHTML +=
+                        `<br/><h4 id="abilityUse">You used Arcane Shield, AC incresed by +2 for 10 turns!</h4>`;
+                    setTimeout(() => {
+                        $("#logAC").css("color", "blue",)
+                        $(".shield").effect("bounce")
+                        logAC.innerHTML = "+" + player.armorClass
+                    }, 5)
+                } else if (spellUsed == 1) {
+                    bottomLog.innerHTML +=
+                        `<br/><h4 id="abilityUse">You can't stack Arcane Shield unit it dissipates!</h4>`;
+                } else {
+                    console.log("Out of Resource")
+                    bottomLog.innerHTML += `<br/><h4 id="abilityUse">Out of Resources</h4>`;
+                }
+                break;
+
+        }
+    }
+
+    endFirstAbility() {
+        switch (this.type) {
+            case "Warrior":
+                abilityTurnCounter = 1
+                if (rageUsed == 1 && abilityTurnCounter == 1) {
+                    setTimeout(() => {
+                        player.attack.mod.toHit -= 3
+                        logSTG.innerHTML = "+" + player.attack.mod.toHit
+                        rageUsed = 0
+                        abilityTurnCounter = 0
+                    }, 3500)
+                }
+                break;
+            case "Wizard":
+                if (spellUsed == 1) {
+                    $("#abilityBtn").remove();
+                    abilityTurnCounter ++
+                }
+                if (abilityTurnCounter > 10) {
+                    player.armorClass -= 2
+                    setTimeout(() => {
+                        bottomLog.innerHTML +=
+                            `<br/><h4 id="abilityUse">Arcane Shield Dissipated!</h4>`;
+                        $("#logAC").animate({
+                            color: "black",
+                        }, 10)
+                        $(".shield").effect("pulsate")
+                        logAC.innerHTML = "+" + player.armorClass
+                    }, 1000)
+                    $(`<button><h2>Use Ability</button>`).attr({
+                        "class": "buttonsAttk",
+                        "id": "abilityBtn",
+                        "onclick": "useAbility()",
+                    }).appendTo(".buttons");
+                    spellUsed = 0
+                    abilityTurnCounter = 0
+                }
+                break;
+        }
+    }
 };
+
 class Loot {
     constructor(_name) {
         this.name = _name;
     }
-    armor(){
-        switch(this.name){
+    armor() {
+        switch (this.name) {
             case "Enchanted Armor":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="armourText">You found a set of Enchanted Armor. AC Increased by 3.</span>`;
                 $("#armourText").css("color", "blue")
                 player.armorClass += 3
-            setTimeout(() => {
-                $("#logAC").animate({
-                    color:"blue",
-                }, 10)
-                $(".shield").effect("bounce")
-                logAC.innerHTML = "+" + player.armorClass
-            }, 2000)
-            addMusic("findtreasure", false);
-            break;
+                setTimeout(() => {
+                    $("#logAC").animate({
+                        color: "blue",
+                    }, 10)
+                    $(".shield").effect("bounce")
+                    logAC.innerHTML = "+" + player.armorClass
+                }, 2000)
+                addMusic("findtreasure", false);
+                break;
 
             case "Ancient Armor":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="armourText">You found a set of Ancient Armor. AC Increased by 3.</span>`;
                 $("#armourText").css("color", "red")
                 player.armorClass += 3
-            setTimeout(() => {
-                $("#logAC").animate({
-                    color:"red",
-                }, 10)
-                $(".shield").effect("bounce")
-                logAC.innerHTML = "+" + player.armorClass
-            }, 2000)
-            addMusic("findtreasure", false);
-            break;
+                setTimeout(() => {
+                    $("#logAC").animate({
+                        color: "red",
+                    }, 10)
+                    $(".shield").effect("bounce")
+                    logAC.innerHTML = "+" + player.armorClass
+                }, 2000)
+                addMusic("findtreasure", false);
+                break;
 
             case "Divine Armor":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="armourText">The goddess blessed your amor, and it turned divine.</span>`;
                 $("#armourText").css("color", "rgb(255, 234, 0)")
                 $("#armourText").css("text-shadow", "0 0 15px black")
                 player.armorClass = 23
-            setTimeout(() => {
-                $("#logAC").animate({
-                    color:"rgb(255, 234, 0)",
-                }, 10)
-                $(".shield").effect("bounce")
-                logAC.innerHTML = "+" + player.armorClass
-            }, 2000);
-            addMusic("blessing", false);
-            break;
+                setTimeout(() => {
+                    $("#logAC").animate({
+                        color: "rgb(255, 234, 0)",
+                    }, 10)
+                    $(".shield").effect("bounce")
+                    logAC.innerHTML = "+" + player.armorClass
+                }, 2000);
+                addMusic("blessing", false);
+                break;
         }
     }
 
     weapons() {
         switch (this.name) {
             case "Silver Weapon":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="weaponID">You found a Silver Weapon.</span>`;
                 $("#weaponID").css("color", "gray")
                 player.attack.damage = [1, 10]
                 player.attack.mod.toHit += 2
                 player.attack.mod.toDamage = 5
-                
+
                 setTimeout(() => {
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     $("#logSTG").animate({
-                        color:"gray",
+                        color: "gray",
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500);
@@ -124,18 +352,18 @@ class Loot {
                 break;
 
             case "Obsidian Weapon":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="weaponID">You found an Obsidian Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(93,57,84)")
                 player.attack.damage = [2, 10]
                 player.attack.mod.toHit = 12
                 player.attack.mod.toDamage = 6
-                
+
                 setTimeout(() => {
-                    logSTG.innerHTML = 
+                    logSTG.innerHTML =
                         "+" + player.attack.mod.toHit;
                     $("#logSTG").animate({
-                        color:"rgb(93,57,84)",
+                        color: "rgb(93,57,84)",
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500);
@@ -143,17 +371,17 @@ class Loot {
                 break;
 
             case "Scarlet Weapon":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="weaponID">You found a Scarlet Weapon.</span>`;
                 $("#weaponID").css("color", "red")
                 player.attack.damage = [2, 8]
                 player.attack.mod.toHit = 14
                 player.attack.mod.toDamage = 8
-                
+
                 setTimeout(() => {
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     $("#logSTG").animate({
-                        color:"red",
+                        color: "red",
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500)
@@ -161,18 +389,18 @@ class Loot {
                 break;
 
             case "Enchanted Weapon":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="weaponID">You found an Enchanted Weapon.</span>`;
                 $("#weaponID").css("color", "blue")
                 player.attack.damage = [3, 4]
                 player.attack.mod.toHit = 13
                 player.attack.mod.toDamage = 7
-                
+
                 setTimeout(() => {
-                    logSTG.innerHTML = 
+                    logSTG.innerHTML =
                         "+" + player.attack.mod.toHit;
                     $("#logSTG").animate({
-                        color:"blue",
+                        color: "blue",
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500)
@@ -180,18 +408,18 @@ class Loot {
                 break;
 
             case "Divine Weapon":
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><span id="weaponID">The Goddess blessed your weapon into a Divine Weapon.</span>`;
                 $("#weaponID").css("color", "rgb(255, 234, 0)")
                 $("#weaponID").css("text-shadow", "0 0 15px black")
                 player.attack.damage = [4, 10]
                 player.attack.mod.toHit = 16
                 player.attack.mod.toDamage = 10
-                
+
                 setTimeout(() => {
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     $("#logSTG").animate({
-                        color:"rgb(255, 234, 0)",
+                        color: "rgb(255, 234, 0)",
                     }, 10)
                     $(".sword").effect("bounce")
                 }, 1500);
@@ -204,32 +432,32 @@ class Loot {
         switch (this.name) {
             case "HalfPotionHP":
                 player.hitPoints += 8
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><h4 id="hPotion">You found half a Health Potion.</br> Hit Points restored by 5.</h4>`;
                 $("#hPotion").css("color", "green")
                 //Hit points restore animation
-                
+
                 $(".heart").animate({
                     color: "green",
-                }, 2500)
+                }, 100)
                 setTimeout(() => {
                     floatingText("+" + 8, "floatingTextPlayer", "green")
                     logHP.innerHTML = player.hitPoints
                     addMusic("potionsound", false);
-                }, 2500)
+                }, 100)
                 $(".heart").effect("pulsate")
                 $(".heart").animate({
                     color: "black",
-                }, 5000)
+                }, 4000)
                 break;
 
             case "FullPotionHP":
                 player.hitPoints += 15
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><h4 id="hPotion">You found a Full Health Potion.</br> Hit Points restored by 10.</h4>`;
                 $("#hPotion").css("color", "green")
                 //Hit points restore animation
-                
+
                 $(".heart").animate({
                     color: "green",
                 }, 2500)
@@ -244,14 +472,14 @@ class Loot {
                 }, 5000)
                 break;
 
-                case "Divine Heal":
+            case "Divine Heal":
                 player.hitPoints += 60
-                bottomLog.innerHTML += 
+                bottomLog.innerHTML +=
                     `<br/><h4 id="hPotion">The Goddess restored and enhanced your Health.</h4>`;
                 $("#hPotion").css("color", "rgb(255, 234, 0)")
                 $("#hPotion").css("text-shadow", "0 0 15px black")
                 //Hit points restore animation
-                
+
                 $(".heart").animate({
                     color: "rgb(255, 234, 0)",
                 }, 2500)
@@ -269,17 +497,17 @@ class Loot {
     }
 
     gold() {
-        bottomLog.innerHTML += 
+        bottomLog.innerHTML +=
             `<br/><span id="goldBag">You found a small bag of gold.</span>`;
         $("#goldBag").css("color", "rgb(155,135,12)");
         addMusic("gold", false);
     }
 
-    book(){
+    book() {
         addMusic("openingbook", false);
     }
 
-    floorCollapse(){
+    floorCollapse() {
         setTimeout(() => {
             $(".card").effect("bounce");
             addMusic("floorcollapse", false);
@@ -290,7 +518,7 @@ class Loot {
 
 const bookSFX = new Loot("")
 const floorCollapseSFX = new Loot("")
-const goldSFX= new Loot("Gold")
+const goldSFX = new Loot("Gold")
 const HalfPotionHP = new Loot("HalfPotionHP")
 const FullPotionHP = new Loot("FullPotionHP")
 const silverWeapon = new Loot("Silver Weapon")
@@ -304,7 +532,7 @@ const divineArmor = new Loot("Divine Armor")
 const divineHeal = new Loot("Divine Heal")
 
 
-arrMonster.push(new Enemies("Rat", 12, 8, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 12, 10, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
 arrMonster.push(new Enemies("Goblin", 24, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 

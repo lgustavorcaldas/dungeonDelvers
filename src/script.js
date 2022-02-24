@@ -54,13 +54,14 @@ $(".imgTwo").click(function () {
     $(".imgOne").css("transform", "scale(100%)");
     $(".imgTwo").css("transform", "scale(110%)");
     $(".imgThree").css("transform", "scale(100%)");
-    addMusic("slayerselection", false);
-    character = "Slayer";
+    addMusic("rogueselection", false);
+    character = "Rogue";
 });
 $(".imgThree").click(function () {
     console.log("Three");
     $(".pic").css("background-image", "url(./img/playerMage.png)");
     $(".imgOne").css("transform", "scale(100%)");
+  
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(110%)");
     addMusic("wizardselection", false);
@@ -70,11 +71,11 @@ $(".imgThree").click(function () {
 //Inicia o jogo após seleção de personagens
 function startGame() {
     if(character == "Warrior"){
-        player = new Players("Chesterfield", 100, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 8] });
+        player = new Players("Chesterfield", 120, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 12] }, "Warrior", 12);
     } else if( character == "Mage"){
-        player = new Players("Chesterfield", 92, 13, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 5 }, "toHit": 20, "damage": [1, 12] });
+        player = new Players("Chesterfield", 92, 12, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 6 }, "toHit": 20, "damage": [2, 6] }, "Wizard", 15);
     } else{
-        player = new Players("Chesterfield", 120, 12, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [2, 6] });
+        player = new Players("Chesterfield", 100, 13, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 5 }, "toHit": 20, "damage": [1, 8] }, "Rogue", 8);
     } 
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value;
     
@@ -115,7 +116,7 @@ function startGame() {
             //  ancientArmor.armor() 
             //  divineWeapon.weapons() 
             //  divineArmor.armor() 
-            //  divineHeal.potion()
+            //  divineHeal.buffs()
             addMusic("ratbattle", true);
         }
     }, 500);
@@ -144,6 +145,7 @@ function rollForInitiative() {
             bottomLog.innerHTML += 
                 `</br> ${player.name}'s Turn.`;
         } else if (playerInitiative < monsterInitiative) {
+            player.endFirstAbility()
             turno = false;
             $(".buttonsAttk").each(function () {
                 this.style.display = "none";
@@ -173,10 +175,16 @@ function typeOfAttack(num) {
         ``);
 
     if (num == 0) {
+        player.endFirstAbility()
         attack(player, arrMonster[level], "fast");
+        console.log(abilityTurnCounter)
     } else if (num == 1) {
+        player.endFirstAbility()
+        console.log(abilityTurnCounter)
         attack(player, arrMonster[level], "strong");
     } else {
+        player.endFirstAbility()
+        console.log(abilityTurnCounter)
         attack(player, arrMonster[level], "normal");
     }
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
@@ -228,6 +236,8 @@ function nextEvent(){
             $("#notYourTurn").html(
                 "");
             if (arrMonster[level] == arrMonster[1]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Goblin Rewards//
                 let randomizeItem = randomize(1, 11);
                 if (randomizeItem <= 2) {
@@ -253,6 +263,8 @@ function nextEvent(){
                 addMusic("goblinbattle", true);
                 //End of Goblin Battle Music
             } else if (arrMonster[level] == arrMonster[2]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Wolf Rewards
                 let randomizeItem = randomize(1, 11)
                 if (randomizeItem <= 2) {
@@ -276,6 +288,8 @@ function nextEvent(){
                 addMusic("wolfbattle", true);
                 //End of Wolf Battle Music
             } else if (arrMonster[level] == arrMonster[3]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Giant Spider Rewards
                 HalfPotionHP.potion();
                 silverWeapon.weapons();
@@ -295,6 +309,8 @@ function nextEvent(){
                 addMusic("bearbattle", true);
                 //End of Owlbear Battle Music
             } else if (arrMonster[level] == arrMonster[5]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Piece of Lore
                 bottomLog.innerHTML += 
                     `<br/><span>New evidence of the old rituals grabs your attention. You go through more old books, and you read the name "Souleater" througout many of them. It seems like this "Souleater" created a more powerfull version of the enslavement spell.</span>`;
@@ -313,6 +329,8 @@ function nextEvent(){
                 addMusic("manticorebattle", true);
                 //End of Manticore Battle Theme
             } else if (arrMonster[level] == arrMonster[6]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Piece of Lore
                 bottomLog.innerHTML += 
                     `<br/><span>A chill is sent through your spines as you find the journal of a wizard named "Cainhurst". The said wizard enhanced the enslavement ritual, and used it to absorb the life essence of everything it could reach, and thus became the Souleater. As his corruption spread, the Goddess lost her influence on the region, and famine and desperation arose.</span>`;
@@ -321,13 +339,15 @@ function nextEvent(){
                 //End of Behemoth Rewards
                 addMusic("manticorebattle", true);
             } else if (arrMonster[level] == arrMonster[7]) {
+                //Rogue Steal Reset
+                rogueStealReset()
                 //Piece of Lore
                 bottomLog.innerHTML += 
                     `<br/><span>You found the last remaining Divine Shrine on the region! </span><br/><span>The Godess reaches you:'Cleanse this corrupted place my child, and restore peace in the region.</span>`;
                 //Dragon Rewards
                 divineWeapon.weapons();
                 divineArmor.armor();
-                divineHeal.potion();
+                divineHeal.buffs();
                 //Dragon Rewards
                 addMusic("dragonbattle", true);
             } else {
@@ -360,6 +380,8 @@ function endTurn() {
     diceRoll()
 
     attack(arrMonster[level], player, "normal");
+    player.endFirstAbility()
+    console.log(abilityTurnCounter)
 
     turno = true;
     $(".buttonsAttk").each(function () {
