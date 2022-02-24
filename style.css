@@ -130,15 +130,15 @@ h4{
 .container{
     transform: scale(80%);
     margin: 0 auto;
-    margin-top: -50px;
-    display: none;
+    margin-top: -125px;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     width: 1600px;
 }
     .player, #right{
         width: 550px;
-        height: 700px;
+        height: 600px;
     }
         #showName{
             position:absolute;
@@ -244,45 +244,127 @@ h4{
                 background-size: contain;
                 background-repeat: no-repeat;
             }
-        .buttons{
-            margin-top: 150px;
-            width: 600px;
-            height: 75px;
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        .buttons{    
             display: flex;
-            justify-content: space-around;
+            width: 600px;
+            top: 725px;
+            right: 1000px;
+            position: absolute;
+            z-index: 1000;
         }
-            .buttons button{
-                width: 190px;
-                height: 74px;
-                border: 0;
-                border-radius: 10%;
-                color: white;
-                background-image: url(./img/buttons.png);
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat;
+            nav, #navII, #navIII{
+                margin: 50px auto;
+                width: 80px;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: grab;
             }
-                .buttons button:hover{
-                    transform: scale(105%);
+                .toggle-btn, #toggleBtnII, #toggleBtnIII{
+                    font-size: 35px;
+                    color: #0e2431;
+                    z-index: 100;
+                    cursor: pointer;
+                    transform: rotate(225deg);
+                    transition: all 0.6s ease;
                 }
-                #gameStartBtn{
-                    width: 193px;
-                    height: 75px;
-                    border: 0;
-                    border-radius: 10%;
-                    color: white;
-                    background-image: url(./img/buttons.png);
-                    background-position: center;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    font-size: 28px;
+                .nav-content{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transform: rotate(120deg);
                 }
-                    #gameStartBtn:hover{
-                        transform: scale(105%);
+                .nav-content span{
+                    position: absolute;
+                    transition: all 0.6s ease;
+                    opacity: 0;
+                }
+                    .toggle-btn, #toggleBtnII, #toggleBtnIII,
+                    .nav-content span a{
+                        height: 60px;
+                        width: 60px;
+                        background-color: #440a08;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        box-shadow: 0 0 20px rgba(0,0,0,0.2);
                     }
+                    
+                    .toggle-btn, #toggleBtnII, #toggleBtnIII{
+                        height: 125px;
+                        width: 125px;
+                        background-image: url(./img/warrior.png);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover ;
+                    }
+                    #toggleBtnII{
+                        background-image: url(./img/mage.png);
+                    }
+                    #toggleBtnIII{
+                        background-image: url(./img/rogue.png);
+                    }
+                        .toggle-btn:hover, #toggleBtnII:hover, #toggleBtnIII:hover{
+                            transform: scale(110%);
+                        }
+                        .nav-content span a{
+                            background-color: aliceblue;
+                        }
+                nav.open .nav-content span, #navII.open .nav-content span, #navIII.open .nav-content span {
+                    transform: rotate(calc(var(--i) * (360deg/10))) translateY(120px);
+                    opacity: 1;
+                }
+                .nav-content span a{
+                    text-decoration: none;
+                    transform: rotate(-120deg);
+                }
+                .nav-content span a i{
+                    font-size: 24px;
+                    color: #0e2431;
+                    transform: rotate(calc(var(--i) * (360deg/ -10)));
+                    opacity: 0.8;
+                    transition: 0.2s;
+                }
+                .nav-content span a:hover i{
+                    opacity: 1; 
+                    color: red;
+                }
+                .nav-content span a:hover:after {
+                    position: absolute;
+                    content: attr(title);
+                    display: inline-block;
+                    width: max-content;
+                    bottom: 80px;
+                    padding: 5px;
+                    background-color: black;
+                    transform: rotate(calc(var(--i) * (-360deg/ 10)));
+                    color: white;
+                }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        #gameStartBtn{
+            width: 193px;
+            height: 75px;
+            border: 0;
+            border-radius: 10%;
+            color: white;
+            background-image: url(./img/buttons.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            font-size: 28px;
+        }
+            #gameStartBtn:hover{
+                transform: scale(105%);
+            }
     .monster, #left{
         width: 550px;
         height: 700px;
+    }
+    #left{
+        margin-top: 75px;
     }
         #showNameMonster{
             position:absolute;
@@ -404,22 +486,24 @@ h4{
             flex-direction: column;
             align-items: center;        
         }
+        button{
+            background-color: #ffffff00;
+        }
             #endTurn{
                 position: absolute;
-                margin-top: 340px;
-                width: 190px;
-                height: 74px;
+                margin-top: 350px;
+                width: 150px;
+                height: 150px;
                 border: 0;
-                border-radius: 10%;
                 color: white;
-                background-image: url(./img/buttons.png);
+                background-image: url(./img/monster.png);
                 background-position: center;
-                background-size: contain;
                 background-repeat: no-repeat;
+                background-size: cover;
             }
                 #endTurn:hover{
-                    transform: scale(105%);
-                    background-color: #440a08;
+                    transform: scale(105%) rotate(60deg);
+                    transition: 0.2s;
                 }
         #notYourTurn{
             height: 100px;
