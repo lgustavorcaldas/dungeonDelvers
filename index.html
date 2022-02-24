@@ -89,13 +89,13 @@
                                 <i class='bx bx-plus'></i>
                             </div>
                             <span style="--i:1;">
-                                <a href="#" title="Fast Attack"><i class='bx bxs-home'>A</i></a>
+                                <a href="#" title="Fast Attack" onclick="typeOfAttack(0)"><i class='bx bxs-home'>A</i></a>
                             </span>
                             <span style="--i:2;">
-                                <a href="#" title="Normal Attack"><i class='bx bxs-camera'>B</i></a>
+                                <a href="#" title="Normal Attack" onclick="typeOfAttack(2)"><i class='bx bxs-camera'>B</i></a>
                             </span>
                             <span style="--i:3;">
-                                <a href="#" title="Strong Attack"><i class='bx bxs-alarm' >C</i></a>
+                                <a href="#" title="Strong Attack" onclick="typeOfAttack(1)"><i class='bx bxs-alarm' >C</i></a>
                             </span>
                         </div>
                     </nav>
@@ -105,14 +105,14 @@
                                 <i class='bx bx-plus'></i>
                             </div>
                             <span style="--i:1;">
-                                <a href="#" title="Magic Attack"><i class='bx bxs-home'>AA</i></a>
+                                <a href="#" title="Magic Attack" onclick="useFirstAbility()"><i class='bx bxs-home'>AA</i></a>
                             </span>
-                            <span style="--i:2;">
-                                <a href="#" title="Penis Attack"><i class='bx bxs-camera'>BB</i></a>
+                            <!-- <span style="--i:2;">
+                                <a href="#" title="Penis Attack" onclick="useSecondAbility()"><i class='bx bxs-camera'>BB</i></a>
                             </span>
                             <span style="--i:3;">
-                                <a href="#" title="Ass Attack"><i class='bx bxs-alarm' >CC</i></a>
-                            </span>
+                                <a href="#" title="Ass Attack" onclick="useThirdAbility()"><i class='bx bxs-alarm' >CC</i></a>
+                            </span> -->
                         </div>
                     </nav>
                     <nav id="navIII">
@@ -121,7 +121,7 @@
                                 <i class='bx bx-plus'></i>
                             </div>
                             <span style="--i:1;">
-                                <a href="#" title="Magic Attack"><i class='bx bxs-home'>AAA</i></a>
+                                <a href="#" title="Magic Attack" id="firstSkill"><i class='bx bxs-home'>AAA</i></a>
                             </span>
                             <span style="--i:2;">
                                 <a href="#" title="Penis Attack"><i class='bx bxs-camera'>BBB</i></a>
@@ -130,7 +130,7 @@
                                 <a href="#" title="Ass Attack"><i class='bx bxs-alarm' >CCC</i></a>
                             </span>
                             <span style="--i:4;">
-                                <a href="#" title="Ass Attack" onclick="typeOfAttack(0)"><i class='bx bxs-alarm' >D</i></a>
+                                <a href="#" title="Ass Attack" ><i class='bx bxs-alarm' >D</i></a>
                             </span>
                         </div>
                     </nav>

@@ -14,13 +14,6 @@ function addMusic(name, loop) {
     }).appendTo("body");
 };
 
-function addAbilityButton() {
-    $(`<button><h2>Use Ability</button>`).attr({
-        "class": "buttonsAttk",
-        "id": "abilityBtn",
-        "onclick": "useAbility()",
-    }).appendTo(".buttons");
-}
 
 function floatingText(damage, id, color) {
     $(`<h2 id="blabla">${damage}</h2>`).css({
@@ -42,9 +35,8 @@ function floatingText(damage, id, color) {
     }, 2000);
 };
 
-function useAbility() {
+function useFirstAbility() {
     player.firstAbility()
-    player.endFirstAbility()
 }
 
 function rogueStealReset() {
@@ -180,14 +172,24 @@ class Players {
     firstAbility() {
         switch (this.type) {
             case "Warrior":
-                bottomLog.innerHTML +=
+                if (player.classResource >= 3 && rageUsed == 0){
+                bottomLog.innerHTML =
                     `<br/><h4 id="abilityUse">You used Aimed Thrust! +3 chance to hit!</h4>`;
-                setTimeout(() => {
-                    $("#abilityBtn").remove();
-                    player.attack.mod.toHit += 3
+                    player.attack.mod.toHit += 4
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     rageUsed = 1
-                }, 200)
+                    addMusic("warriorabilityone", false)
+                        $("#logSTG").animate({
+                            color: "red",
+                        }, 10)
+                        $(".sword").effect("bounce")
+                } else if (rageUsed == 1){
+                    bottomLog.innerHTML =
+                    `<br/><h4 id="abilityUse">Your eyes are sharpened!</h4>`;
+                } else if (player.classResource <= 3){
+                    bottomLog.innerHTML =
+                    `<br/><h4 id="abilityUse">Out of rage!</h4>`;
+                }
                 break;
 
             case "Rogue":
@@ -213,22 +215,27 @@ class Players {
             case "Wizard":
                 if (player.classResource >= 3 && spellUsed == 0) {
                     spellUsed = 1
-                    player.classResource -= 3
+                    player.classResource -= 4
                     player.armorClass += 2
+                    abilityTurnCounter += 1
                     addMusic("wizardabilityone", false)
-                    bottomLog.innerHTML +=
-                        `<br/><h4 id="abilityUse">You used Arcane Shield, AC incresed by +2 for 10 turns!</h4>`;
+                        turno = false
+                        $(".buttons").css("display", "none");
+                        $("#endTurn").css("display", "flex");
+                    bottomLog.innerHTML =
+                        `<br/><h3 id="abilityUse">You used Arcane Shield, AC incresed by +2 for 10 turns!</h3>`;
+                    $("#firstSkill").prop("disabled", true)    
                     setTimeout(() => {
                         $("#logAC").css("color", "blue",)
                         $(".shield").effect("bounce")
                         logAC.innerHTML = "+" + player.armorClass
                     }, 5)
                 } else if (spellUsed == 1) {
-                    bottomLog.innerHTML +=
+                    bottomLog.innerHTML =
                         `<br/><h4 id="abilityUse">You can't stack Arcane Shield unit it dissipates!</h4>`;
-                } else {
+                } else if (player.classResource <= 3) {
                     console.log("Out of Resource")
-                    bottomLog.innerHTML += `<br/><h4 id="abilityUse">Out of Resources</h4>`;
+                    bottomLog.innerHTML = `<br/><h4 id="abilityUse">Out of Resources</h4>`;
                 }
                 break;
 
@@ -241,11 +248,13 @@ class Players {
                 abilityTurnCounter = 1
                 if (rageUsed == 1 && abilityTurnCounter == 1) {
                     setTimeout(() => {
-                        player.attack.mod.toHit -= 3
+                        player.attack.mod.toHit -= 4
                         logSTG.innerHTML = "+" + player.attack.mod.toHit
                         rageUsed = 0
                         abilityTurnCounter = 0
-                    }, 3500)
+                        $("#logSTG").css("color", "black")
+                        $(".sword").effect("pulsate")
+                    }, 3000)
                 }
                 break;
             case "Wizard":
@@ -264,11 +273,6 @@ class Players {
                         $(".shield").effect("pulsate")
                         logAC.innerHTML = "+" + player.armorClass
                     }, 1000)
-                    $(`<button><h2>Use Ability</button>`).attr({
-                        "class": "buttonsAttk",
-                        "id": "abilityBtn",
-                        "onclick": "useAbility()",
-                    }).appendTo(".buttons");
                     spellUsed = 0
                     abilityTurnCounter = 0
                 }
