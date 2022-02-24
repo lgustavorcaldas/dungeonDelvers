@@ -46,6 +46,7 @@ $(".imgOne").click(function () {
     $(".imgOne").css("transform", "scale(110%)");
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(100%)");
+    $("#innerAbilityBtnOne").attr("title", "Aimed Strike, +4 STG")
     addMusic("warriorselection", false);
     character = "Warrior";
 });
@@ -56,6 +57,7 @@ $(".imgTwo").click(function () {
     $(".imgOne").css("transform", "scale(100%)");
     $(".imgTwo").css("transform", "scale(110%)");
     $(".imgThree").css("transform", "scale(100%)");
+    $("#innerAbilityBtnOne").attr("title", "Steal")
     addMusic("rogueselection", false);
     character = "Rogue";
 });
@@ -64,9 +66,9 @@ $(".imgThree").click(function () {
     $(".pic").css("background-image", "url(./img/playerMage.png)");
     $(".toggle-btn").css("background-image", "url(./img/buttons/mage.png)");
     $(".imgOne").css("transform", "scale(100%)");
-  
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(110%)");
+    $("#innerAbilityBtnOne").attr("title", "Arcane Shield")
     addMusic("wizardselection", false);
     character = "Mage";
 });
@@ -78,7 +80,7 @@ function startGame() {
     } else if( character == "Mage"){
         player = new Players("Chesterfield", 92, 12, 2, { "name": "sword", "mod": { "toHit": 10, "toDamage": 6 }, "toHit": 20, "damage": [2, 6] }, "Wizard", 15);
     } else{
-        player = new Players("Chesterfield", 100, 13, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 5 }, "toHit": 20, "damage": [1, 8] }, "Rogue", 8);
+        player = new Players("Chesterfield", 100, 13, 6, { "name": "fire", "mod": { "toHit": 8, "toDamage": 6 }, "toHit": 20, "damage": [2, 4] }, "Rogue", 8);
     } 
     if (document.getElementById("name").value != "") player.name = document.getElementById("name").value;
     

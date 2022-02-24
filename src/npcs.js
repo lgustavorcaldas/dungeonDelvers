@@ -174,7 +174,7 @@ class Players {
             case "Warrior":
                 if (player.classResource >= 3 && rageUsed == 0){
                 bottomLog.innerHTML =
-                    `<br/><h4 id="abilityUse">You used Aimed Thrust! +3 chance to hit!</h4>`;
+                    `<br/><h4 id="abilityUse">You used Aimed Strike! +4 chance to hit!</h4>`;
                     player.attack.mod.toHit += 4
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     rageUsed = 1
@@ -185,7 +185,8 @@ class Players {
                         $(".sword").effect("bounce")
                 } else if (rageUsed == 1){
                     bottomLog.innerHTML =
-                    `<br/><h4 id="abilityUse">Your eyes are sharpened!</h4>`;
+                    `<br/><h3 id="abilityUse">Your eyes are sharpened!</h3>`;
+                    $("#abilityUse").css("color", "red")
                 } else if (player.classResource <= 3){
                     bottomLog.innerHTML =
                     `<br/><h4 id="abilityUse">Out of rage!</h4>`;
@@ -208,7 +209,7 @@ class Players {
                         `<br/><h4 id="abilityUse">There's nothing to steal!</h4>`;
                 } else if (player.classResource <= 0) {
                     bottomLog.innerHTML +=
-                        `<br/><h4 id="abilityUse">Out of resource!!</h4>`;
+                        `<br/><h4 id="abilityUse">Out of finesse!!</h4>`;
                 }
                 break;
 
@@ -226,7 +227,7 @@ class Players {
                         `<br/><h3 id="abilityUse">You used Arcane Shield, AC incresed by +2 for 10 turns!</h3>`;
                     $("#firstSkill").prop("disabled", true)    
                     setTimeout(() => {
-                        $("#logAC").css("color", "blue",)
+                        $("#logAC").css("color", "purple",)
                         $(".shield").effect("bounce")
                         logAC.innerHTML = "+" + player.armorClass
                     }, 5)
@@ -262,17 +263,19 @@ class Players {
                     $("#abilityBtn").remove();
                     abilityTurnCounter ++
                 }
-                if (abilityTurnCounter > 10) {
+                if (abilityTurnCounter > 2) {
                     player.armorClass -= 2
                     setTimeout(() => {
                         bottomLog.innerHTML +=
-                            `<br/><h4 id="abilityUse">Arcane Shield Dissipated!</h4>`;
+                            `<br/><h3 id="abilityUse">Arcane Shield Dissipated!</h3>`;
+                            $("#abilityUse").css("color", "purple")
                         $("#logAC").animate({
                             color: "black",
                         }, 10)
                         $(".shield").effect("pulsate")
                         logAC.innerHTML = "+" + player.armorClass
-                    }, 1000)
+                        addMusic("dispelmagic", false)
+                    }, 3100)
                     spellUsed = 0
                     abilityTurnCounter = 0
                 }
@@ -536,7 +539,7 @@ const divineArmor = new Loot("Divine Armor")
 const divineHeal = new Loot("Divine Heal")
 
 
-arrMonster.push(new Enemies("Rat", 12, 10, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 50, 10, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
 arrMonster.push(new Enemies("Goblin", 24, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 

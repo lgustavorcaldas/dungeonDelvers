@@ -39,7 +39,7 @@ function attack(attacker, receiver, how){
                 if(character == "Warrior"){
                     addMusic("warriorhit", false);
                 } else if(character == "Rogue"){
-                    addMusic("slayerhit", false);
+                    addMusic("roguehit", false);
                 }else {
                     addMusic("wizardhit", false);
                 }
@@ -53,6 +53,7 @@ function attack(attacker, receiver, how){
                 $(`#logHP`).effect("pulsate")
                 $(".card").effect("pulsate");
                 addMusic("monsterhit", false);
+            
             }
         }, 2000);
 
