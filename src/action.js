@@ -52,8 +52,28 @@ function attack(attacker, receiver, how){
                 $("#blabla").effect("pulsate")
                 $(`#logHP`).effect("pulsate")
                 $(".card").effect("pulsate");
-                addMusic("monsterhit", false);
-            
+                if (arrMonster[level].name == "Rat"){
+                    addMusic("monsterhit", false);
+                    addMusic("ratscreech", false)
+                } else if (arrMonster[level].name == "Goblin"){
+                    addMusic("goblinscream", false)
+                    addMusic("goblinhit", false)
+                } else if (arrMonster[level].name  == "Wolf"){
+                    addMusic("wolfbark", false)
+                    addMusic("wolfhit", false)
+                } else if (arrMonster[level].name  == "GiantSpider"){
+                    addMusic("spiderbite", false)
+                    addMusic("spiderstep", false)
+                } else if (arrMonster[level].name  == "Owlbear"){
+                    addMusic("bearbite", false)
+                } else if (arrMonster[level].name  == "Manticore"){
+                    addMusic("manticorehit", false)
+                    addMusic("manticoreroar", false)
+                } else if (arrMonster[level].name  == "Behemoth"){
+                    addMusic("behemothroar", false)
+                    addMusic("bearbite", false)
+                } else if (arrMonster[level].name  == "Dragon"){
+                }
             }
         }, 2000);
 

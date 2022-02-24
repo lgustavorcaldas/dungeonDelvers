@@ -267,7 +267,7 @@ class Players {
                     $("#abilityBtn").remove();
                     abilityTurnCounter ++
                 }
-                if (abilityTurnCounter > 2) {
+                if (abilityTurnCounter > 10) {
                     player.armorClass -= 2
                     setTimeout(() => {
                         bottomLog.innerHTML +=
