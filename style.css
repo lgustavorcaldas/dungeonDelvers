@@ -130,7 +130,7 @@ h4{
 .container{
     transform: scale(80%);
     margin: 0 auto;
-    margin-top: -125px;
+    margin-top: -150px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -138,7 +138,7 @@ h4{
 }
     .player, #right{
         width: 550px;
-        height: 600px;
+        height: 700px;
     }
         #showName{
             position:absolute;
@@ -296,22 +296,36 @@ h4{
                     .toggle-btn, #toggleBtnII, #toggleBtnIII{
                         height: 125px;
                         width: 125px;
-                        background-image: url(./img/warrior.png);
+                        background-image: url(./img/buttons/rogue.png);
                         background-position: center;
                         background-repeat: no-repeat;
                         background-size: cover ;
                     }
                     #toggleBtnII{
-                        background-image: url(./img/mage.png);
+                        background-image: url(./img/buttons/power.png);
                     }
                     #toggleBtnIII{
-                        background-image: url(./img/rogue.png);
+                        background-image: url(./img/buttons/bag.png);
                     }
                         .toggle-btn:hover, #toggleBtnII:hover, #toggleBtnIII:hover{
-                            transform: scale(110%);
+                            transform: scale(105%) rotate(-120deg);
+                            transition: 0.2s; 
                         }
+                            .toggle-btn:hover::after, #toggleBtnII:hover::after, #toggleBtnIII:hover::after{
+                                position: absolute;
+                                content: attr(title);
+                                display: inline-block;
+                                width: max-content;
+                                bottom: -20px;
+                                padding: 5px;
+                                background-color: black;
+                                color: white; 
+                            }
                         .nav-content span a{
-                            background-color: aliceblue;
+                            background-image: url(./img/buttons/buttom.png);
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover ;
                         }
                 nav.open .nav-content span, #navII.open .nav-content span, #navIII.open .nav-content span {
                     transform: rotate(calc(var(--i) * (360deg/10))) translateY(120px);
@@ -322,8 +336,11 @@ h4{
                     transform: rotate(-120deg);
                 }
                 .nav-content span a i{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
                     font-size: 24px;
-                    color: #0e2431;
                     transform: rotate(calc(var(--i) * (360deg/ -10)));
                     opacity: 0.8;
                     transition: 0.2s;
@@ -337,7 +354,7 @@ h4{
                     content: attr(title);
                     display: inline-block;
                     width: max-content;
-                    bottom: 80px;
+                    bottom: 70px;
                     padding: 5px;
                     background-color: black;
                     transform: rotate(calc(var(--i) * (-360deg/ 10)));
@@ -365,6 +382,7 @@ h4{
     }
     #left{
         margin-top: 75px;
+        height: 750px;
     }
         #showNameMonster{
             position:absolute;
@@ -491,20 +509,34 @@ h4{
         }
             #endTurn{
                 position: absolute;
-                margin-top: 350px;
+                margin-top: 300px;
                 width: 150px;
                 height: 150px;
                 border: 0;
                 color: white;
-                background-image: url(./img/monster.png);
+                background-image: url(./img/buttons/monster.png);
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
             }
                 #endTurn:hover{
-                    transform: scale(105%) rotate(60deg);
+                    transform: scale(105%) rotate(30deg);
                     transition: 0.2s;
                 }
+                    #endTurn:hover::after{
+                        position: absolute;
+                        transition: 0.2s;
+                        content: attr(title);
+                        display: inline-block;
+                        width: max-content;
+                        font-size: 30px;
+                        left: 30px;
+                        bottom: -20px;
+                        transform: rotate(-30deg);
+                        padding: 5px;
+                        background-color: black;
+                        color: white; 
+                    }
         #notYourTurn{
             height: 100px;
             margin-top: 15px;

@@ -42,6 +42,7 @@ function diceRoll(){
 $(".imgOne").click(function () {
     console.log("One");
     $(".pic").css("background-image", `url(./img/playerGuerreiro.png)`);
+    $(".toggle-btn").css("background-image", "url(./img/buttons/warrior.png)");
     $(".imgOne").css("transform", "scale(110%)");
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(100%)");
@@ -51,6 +52,7 @@ $(".imgOne").click(function () {
 $(".imgTwo").click(function () {
     console.log("Two");
     $(".pic").css("background-image", "url(./img/player.png)");
+    $(".toggle-btn").css("background-image", "url(./img/buttons/rogue.png)");
     $(".imgOne").css("transform", "scale(100%)");
     $(".imgTwo").css("transform", "scale(110%)");
     $(".imgThree").css("transform", "scale(100%)");
@@ -60,6 +62,7 @@ $(".imgTwo").click(function () {
 $(".imgThree").click(function () {
     console.log("Three");
     $(".pic").css("background-image", "url(./img/playerMage.png)");
+    $(".toggle-btn").css("background-image", "url(./img/buttons/mage.png)");
     $(".imgOne").css("transform", "scale(100%)");
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(110%)");
@@ -181,6 +184,9 @@ toggleBtnIII.addEventListener("click" , () =>{
 // 
 //Botão de ataque com progressão, trocando os inimigos e a tela
 function typeOfAttack(num) {
+    nav.classList.remove("open");
+    navII.classList.remove("open");
+    navIII.classList.remove("open");
     if (turno == false) return notYourTurn("your");
     $("#notYourTurn").html(
         ``);
@@ -202,6 +208,7 @@ function typeOfAttack(num) {
     }
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
+        $("#endTurn").css("display", "none");
         setTimeout(() => {
             return nextEvent()
         }, 500)
@@ -216,7 +223,6 @@ function typeOfAttack(num) {
     }
 };
 function nextEvent(){
-    $("#endTurn").css("display", "none");
     setTimeout(() => {
         $(".monster").fadeOut();
         addMusic("triumph", false);
@@ -421,6 +427,6 @@ function monster() {
         arrMonster[level].armorClass);
     $(`#monsterLogSTR`).html(
         `+${arrMonster[level].attack.mod.toHit}`);
-    $(`.monsterPic`).css("background-image", `url(./img/${arrMonster[level].name}.png)`)
+    $(`.monsterPic`).css("background-image", `url(./img/monsters/${arrMonster[level].name}.png)`)
 }
 monster();
