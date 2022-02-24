@@ -29,13 +29,14 @@ h4{
 /*---- Login Screen ----*/
 .nameScreen{
     display: flex;
+    /* display: none; */
     color: white;
     flex-direction: column;
     row-gap: 50px;
     justify-content: center;
     align-items: center;
-    height: 800px;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-color: black;
     background-size: cover;
 }
@@ -126,12 +127,43 @@ h4{
     text-align: center;
     margin-bottom: 200px;
 }
+
+/* Map
+.dungeon{
+    background-image: url(./img/dungeon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+    .dungeon div{
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: end;
+        height: 600px;
+        width: 800px;
+    }
+        .dungeon div img{
+            height: 50px;
+            width: 150px;
+        }
+        .dungeon div img:nth-child(2){
+            height: 120px;
+            width: 150px;
+        }
+        .dungeon div img:hover{
+            transform: scale(110%);
+            transform: 2s;
+        } */
+
 /*---- Gamme Screen ----*/
 .container{
     transform: scale(80%);
     margin: 0 auto;
     margin-top: -150px;
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
     width: 1600px;
@@ -520,7 +552,7 @@ h4{
                 background-size: cover;
             }
                 #endTurn:hover{
-                    transform: scale(105%) rotate(30deg);
+                    transform: scale(105%) rotate(20deg);
                     transition: 0.2s;
                 }
                     #endTurn:hover::after{
@@ -532,7 +564,7 @@ h4{
                         font-size: 30px;
                         left: 30px;
                         bottom: -20px;
-                        transform: rotate(-30deg);
+                        transform: rotate(-20deg);
                         padding: 5px;
                         background-color: black;
                         color: white; 
