@@ -68,7 +68,7 @@ $(".imgThree").click(function () {
     $(".imgOne").css("transform", "scale(100%)");
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(110%)");
-    $("#innerAbilityBtnOne").attr("title", "Arcane Shield")
+    $("#innerAbilityBtnOne").attr("title", "Arcane Shield, +2 AC for 10 turns")
     addMusic("wizardselection", false);
     character = "Mage";
 });

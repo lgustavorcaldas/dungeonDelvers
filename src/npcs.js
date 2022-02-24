@@ -189,7 +189,8 @@ class Players {
                     $("#abilityUse").css("color", "red")
                 } else if (player.classResource <= 3){
                     bottomLog.innerHTML =
-                    `<br/><h4 id="abilityUse">Out of rage!</h4>`;
+                    `<br/><h3 id="abilityUse">Out of rage!</h3>`;
+                    $("#abilityUse").css("color", "red")
                 }
                 break;
 
@@ -206,10 +207,12 @@ class Players {
                     player.classResource -= 3
                 } else if (stealUsed == 1) {
                     bottomLog.innerHTML =
-                        `<br/><h4 id="abilityUse">There's nothing to steal!</h4>`;
+                        `<br/><h3 id="abilityUse">There's nothing to steal!</h3>`;
+                    $("#abilityUse").css("color", "brown")    
                 } else if (player.classResource <= 0) {
                     bottomLog.innerHTML +=
-                        `<br/><h4 id="abilityUse">Out of finesse!!</h4>`;
+                        `<br/><h3 id="abilityUse">Out of finesse!!</h3>`;
+                        $("#abilityUse").css("color", "brown")
                 }
                 break;
 
@@ -233,10 +236,11 @@ class Players {
                     }, 5)
                 } else if (spellUsed == 1) {
                     bottomLog.innerHTML =
-                        `<br/><h4 id="abilityUse">You can't stack Arcane Shield unit it dissipates!</h4>`;
+                        `<br/><h3 id="abilityUse">You can't reuse Arcane Shield unit it dissipates!</h3>`;
+                        $("#abilityUse").css("color", "purple",)
                 } else if (player.classResource <= 3) {
-                    console.log("Out of Resource")
-                    bottomLog.innerHTML = `<br/><h4 id="abilityUse">Out of Resources</h4>`;
+                    $("#abilityUse").css("color", "purple",)
+                    bottomLog.innerHTML = `<br/><h3 id="abilityUse">Out of Resources</h3>`;
                 }
                 break;
 
@@ -539,7 +543,7 @@ const divineArmor = new Loot("Divine Armor")
 const divineHeal = new Loot("Divine Heal")
 
 
-arrMonster.push(new Enemies("Rat", 50, 10, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
+arrMonster.push(new Enemies("Rat", 12, 10, 2, { "name": "bite", "mod": { "toHit": 2, "toDamage": 0 }, "toHit": 20, "damage": [1, 4] }));
 
 arrMonster.push(new Enemies("Goblin", 24, 12, 1, { "name": "stab", "mod": { "toHit": 4, "toDamage": 1 }, "toHit": 20, "damage": [1, 4] }));
 
