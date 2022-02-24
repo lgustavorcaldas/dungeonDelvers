@@ -46,7 +46,7 @@ $(".imgOne").click(function () {
     $(".imgOne").css("transform", "scale(110%)");
     $(".imgTwo").css("transform", "scale(100%)");
     $(".imgThree").css("transform", "scale(100%)");
-    $("#innerAbilityBtnOne").attr("title", "Aimed Strike, +4 STG")
+    $("#innerAbilityBtnOne").attr("title", "Aimed Strike, +4 STG for 1 Turn")
     addMusic("warriorselection", false);
     character = "Warrior";
 });
@@ -196,9 +196,12 @@ function typeOfAttack(num) {
         ``);
     turno = false;
     diceRoll()
+        $(".buttons").css("display", "none");
+        setTimeout(() => {
+            $("#endTurn").css("display", "flex");
+        
+        }, 2500)
     
-    $(".buttons").css("display", "none");
-    $("#endTurn").css("display", "flex");
 
     $("#notYourTurn").html(
         ``);
@@ -417,7 +420,9 @@ function endTurn() {
     console.log(abilityTurnCounter)
 
     turno = true;
-    $(".buttons").css("display", "flex");
+    setTimeout(() => {
+        $(".buttons").css("display", "flex");
+    }, 2500)
     $("#endTurn").css("display", "none");
 
     return setTimeout(() => {

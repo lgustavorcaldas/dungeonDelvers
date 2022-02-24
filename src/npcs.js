@@ -175,6 +175,7 @@ class Players {
                 if (player.classResource >= 3 && rageUsed == 0){
                 bottomLog.innerHTML =
                     `<br/><h4 id="abilityUse">You used Aimed Strike! +4 chance to hit!</h4>`;
+                    $("#abilityUse").css("color", "red")
                     player.attack.mod.toHit += 4
                     logSTG.innerHTML = "+" + player.attack.mod.toHit
                     rageUsed = 1
@@ -259,7 +260,7 @@ class Players {
                         abilityTurnCounter = 0
                         $("#logSTG").css("color", "black")
                         $(".sword").effect("pulsate")
-                    }, 3000)
+                    }, 2500)
                 }
                 break;
             case "Wizard":
