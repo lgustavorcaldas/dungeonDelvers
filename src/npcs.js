@@ -542,7 +542,7 @@ class Loot {
 
     gold() {
         bottomLog.innerHTML +=
-            `<br/><h3 id="goldBag">You found a small bag of gold.</h3n>`;
+            `<h3 id="goldBag">You found a small bag of gold.</h3>`;
         $("#goldBag").css("color", "rgb(155,135,12)");
         addMusic("gold", false);
     }

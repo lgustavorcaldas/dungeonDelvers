@@ -111,7 +111,7 @@ function startGame(){
         $(".container").fadeIn();
         $(".container").css("display", "flex");
         if (arrMonster[level] == arrMonster[0]) {
-            //  Para apresentar o comportamento dos metodos
+            //  Loot and Buff Methods
             //  bookSFX.book()
             //  floorCollapseSFX.floorCollapse() 
             //  goldSFX.gold() 
@@ -314,7 +314,6 @@ function nextEvent(){
                 //Wolf Rewards
                 let randomizeItem = randomize(1, 11)
                 if (randomizeItem <= 2) {
-                    bottomLog.innerHTML += 
                     goldSFX.gold();
                 } else if (randomizeItem > 2 && randomizeItem <= 5) {
                     floorCollapseSFX.floorCollapse();
