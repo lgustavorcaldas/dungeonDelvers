@@ -288,13 +288,13 @@ class Players {
                 abilityTurnCounter = 1
                 if (rageUsed == 1 && abilityTurnCounter == 1) {
                     setTimeout(() => {
+                        abilityTurnCounter = 0
                         player.attack.mod.toHit -= 4
                         logSTG.innerHTML = "+" + player.attack.mod.toHit
                         rageUsed = 0
-                        abilityTurnCounter = 0
                         $("#logSTG").css("color", "black")
                         $(".sword").effect("pulsate")
-                    }, 2500)
+                    }, 100)
                 }
                 break;
             case "Wizard":
