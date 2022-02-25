@@ -89,6 +89,8 @@ function startGame() {
         arrMonster[level].name);
     $("#playerName").html(
         player.name);
+    $("#logClassRes").html(
+        player.classResource);
     $(`#logHP`).html(
         player.hitPoints);
     $(`#logAC`).html(
@@ -207,18 +209,16 @@ function typeOfAttack(num) {
         ``);
 
     if (num == 0) {
-        player.endFirstAbility()
         attack(player, arrMonster[level], "fast");
         console.log(abilityTurnCounter)
     } else if (num == 1) {
-        player.endFirstAbility()
         console.log(abilityTurnCounter)
         attack(player, arrMonster[level], "strong");
     } else {
-        player.endFirstAbility()
         console.log(abilityTurnCounter)
         attack(player, arrMonster[level], "normal");
     }
+    player.endFirstAbility()
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
         $("#endTurn").css("display", "none");
@@ -287,7 +287,7 @@ function nextEvent(){
                     bookSFX.book();
                     bottomLog.innerHTML += 
                         `<br/><span>As you were searching around, you found an old half-burnt journal. It is from a group of ancient scholars who were trying to study it. They found out that the dungeon is helding an old ziggurat used for dark rituals.</span>`;
-                } else {
+                } else{
                     //Half-Potion effect
                     HalfPotionHP.potion();
                     console.log(player.hitPoints);

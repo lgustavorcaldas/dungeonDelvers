@@ -164,6 +164,7 @@ h4{
     margin: 0 auto;
     margin-top: -150px;
     display: none;
+    /* display: flex; */
     justify-content: space-around;
     align-items: center;
     width: 1600px;
@@ -182,6 +183,31 @@ h4{
             background-size: cover;
             background-image: url(./img/banner.png);
         }
+        .classRes{
+            position:absolute;
+            margin: -30px 0 0 0;
+        }
+            .classRes div{
+                margin: 100px 0 0 30px;
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                border: 3px solid black;
+            }
+                .classRes div h1{
+                    margin-top: -30px;
+                }
+            #classRes{
+                width: 170px;
+                height: 230px;
+            }
         .heart{
             position:absolute;
             margin: 0 0 0 350px;
@@ -281,9 +307,8 @@ h4{
             display: flex;
             width: 600px;
             top: 725px;
-            right: 1000px;
+            right: 1050px;
             position: absolute;
-            z-index: 1000;
         }
             nav, #navII, #navIII{
                 margin: 50px auto;
@@ -387,7 +412,7 @@ h4{
                     display: inline-block;
                     width: max-content;
                     bottom: 70px;
-                    padding: 5px;
+                    padding: 2px;
                     background-color: black;
                     transform: rotate(calc(var(--i) * (-360deg/ 10)));
                     color: white;
@@ -545,6 +570,7 @@ h4{
                 width: 150px;
                 height: 150px;
                 border: 0;
+                margin-left: 1000px;
                 color: white;
                 background-image: url(./img/buttons/monster.png);
                 background-position: center;
