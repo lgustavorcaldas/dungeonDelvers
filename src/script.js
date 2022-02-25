@@ -16,7 +16,7 @@ $("#gameStartBtn").click(function () {
         $(".nameScreen").fadeOut();
 
         addMusic("maintheme", true);
-    }, 500)
+    }, 3500)
     // 3500
 });
 
@@ -49,6 +49,7 @@ $(".imgOne").click(function () {
     $("#innerAbilityBtnOne").attr("title", "Aimed Strike, +4 STG for 1 Turn")
     addMusic("warriorselection", false);
     character = "Warrior";
+    $("#start").css("display", "block")
 });
 $(".imgTwo").click(function () {
     console.log("Two");
@@ -60,6 +61,7 @@ $(".imgTwo").click(function () {
     $("#innerAbilityBtnOne").attr("title", "Steal")
     addMusic("rogueselection", false);
     character = "Rogue";
+    $("#start").css({"display": "block"})
 });
 $(".imgThree").click(function () {
     console.log("Three");
@@ -71,10 +73,11 @@ $(".imgThree").click(function () {
     $("#innerAbilityBtnOne").attr("title", "Arcane Shield, +2 AC for 10 turns")
     addMusic("wizardselection", false);
     character = "Mage";
+    $("#start").css("display", "block")
 });
 
 //Inicia o jogo após seleção de personagens
-function startGame() {
+function startGame(){
     if(character == "Warrior"){
         player = new Players("Chesterfield", 120, 16, 2, { "name": "lance", "mod": { "toHit": 6, "toDamage": 4 }, "toHit": 20, "damage": [1, 12] }, "Warrior", 12);
     } else if( character == "Mage"){
@@ -101,7 +104,6 @@ function startGame() {
     $("#textScreen").fadeIn();
     $(".musicplayer").remove();
     addMusic("transition", false);
-
     $("#textScreen").css("display", "flex");
     $(".caracterCreation").fadeOut();
     setTimeout(() => {
@@ -126,7 +128,7 @@ function startGame() {
             //  divineHeal.buffs()
             addMusic("ratbattle", true);
         }
-    }, 500);
+    }, 8000);
     // 8000
 };
 
@@ -144,24 +146,28 @@ function rollForInitiative() {
     setTimeout(() => {
         if (playerInitiative > monsterInitiative) {
             turno = true;
-            $("#endTurn").css("display", "none");
-            $(".buttons").css("display", "flex");
+            setTimeout(() => {
+                $(".buttons").css("display", "flex");
+                $("#endTurn").css("display", "none");          
+            }, 4000);
 
             bottomLog.innerHTML += 
                 `</br> ${player.name}'s Turn.`;
         } else if (playerInitiative < monsterInitiative) {
             player.endFirstAbility()
             turno = false;
-            $(".buttons").css("display", "none");
-            $("#endTurn").css("display", "flex");
+            setTimeout(() => {
+                $(".buttons").css("display", "none");
+                $("#endTurn").css("display", "flex");                
+            }, 4000);
             
             bottomLog.innerHTML += 
                 `</br> ${arrMonster[level].name}'s Turn.`;
         } else {
             rollForInitiative();
         }
-    }, 500);
-    // 1000~
+    }, 1000);
+    // 1000
 }
 // 
 const nav = document.querySelector("nav")
@@ -198,13 +204,11 @@ function typeOfAttack(num) {
         ``);
     turno = false;
     diceRoll()
-        $(".buttons").css("display", "none");
-        setTimeout(() => {
-            $("#endTurn").css("display", "flex");
-        
-        }, 2500)
+    $(".buttons").css("display", "none");
+    setTimeout(() => {
+        $("#endTurn").css("display", "flex");
+    }, 1000)
     
-
     $("#notYourTurn").html(
         ``);
 
@@ -221,17 +225,17 @@ function typeOfAttack(num) {
     player.endFirstAbility()
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
-        $("#endTurn").css("display", "none");
         setTimeout(() => {
+            $("#endTurn").css("display", "none");
             return nextEvent()
-        }, 500)
+        }, 2500)
         // 1500
         
     } else {
         return setTimeout(() => {
             $(`#monsterLogHP`).html(
                 arrMonster[level].hitPoints);
-        }, 2000);
+        }, 4000);
         // 4000
     }
 };
@@ -289,7 +293,7 @@ function nextEvent(){
                         `<br/><span>As you were searching around, you found an old half-burnt journal. It is from a group of ancient scholars who were trying to study it. They found out that the dungeon is helding an old ziggurat used for dark rituals.</span>`;
                 } else{
                     //Half-Potion effect
-                    HalfPotionHP.potion();
+                    bagHalfPotion.bag();
                     console.log(player.hitPoints);
                 }
                 //End of Goblin Rewards
@@ -314,7 +318,7 @@ function nextEvent(){
                     bottomLog.innerHTML += 
                         `<br/><span>Upon bringing light to a nearby wall with a torch, you've caught eye of inscriptions in the wall. You don't understand the language, but you recognize the drawing of a demon setting a city ablaze.</span>`;
                 } else {
-                    FullPotionHP.potion();
+                    bagFullPotion.bag();
                     console.log(player.hitPoints);
                 }
                 //End of Wolf Rewards
@@ -325,7 +329,7 @@ function nextEvent(){
                 //Rogue Steal Reset
                 rogueStealReset()
                 //Giant Spider Rewards
-                HalfPotionHP.potion();
+                bagHalfPotion.bag();
                 silverWeapon.weapons();
                 //Giant Spider Rewards End
                 //Giant Spider Battle Music
@@ -337,7 +341,7 @@ function nextEvent(){
                     `<br/><span>While exploring, you noticed the sparks of remaining dark energy in the atmosphere.</span>`;
                 //Owlbear Rewards
                 enchantedArmor.armor();
-                FullPotionHP.potion();
+                bagFullPotion.bag();
                 //End of Owlbear Rewards
                 //Owlbear Battle Music
                 addMusic("bearbattle", true);
@@ -393,7 +397,7 @@ function nextEvent(){
                 $(".musicplayer").remove();
                 addMusic("youwin", true);
             }
-        }, 500);
+        }, 5000);
         // 5000
         level++;
         monster();
@@ -402,8 +406,8 @@ function nextEvent(){
         $("#monsterName").html(
             arrMonster[level].name);
         $('#nameAttacker').html(
-            `<span>New monster incoming...</span></br><span>It's a ${arrMonster[level].name}.</span>`);
-    }, 2000);
+            `<span>New monster incoming...</span><h2>It's a ${arrMonster[level].name}.</h2>`);
+    }, 5000);
     // 5000
 }
 //Termina o turno do jogadora, passando para o ataque do monstro

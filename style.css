@@ -55,7 +55,8 @@ h4{
     justify-content: center;
     align-items: center;
 }
-    .caracterCreation #start{
+    #start{
+        display: none;
         width: 190px;
         height: 74px;
         border: 0;
