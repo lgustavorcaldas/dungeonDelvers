@@ -146,23 +146,26 @@ function rollForInitiative() {
     setTimeout(() => {
         if (playerInitiative > monsterInitiative) {
             turno = true;
+            player.endFirstAbility()
             setTimeout(() => {
                 $(".buttons").css("display", "flex");
                 $("#endTurn").css("display", "none");          
             }, 4000);
 
             bottomLog.innerHTML += 
-                `</br> ${player.name}'s Turn.`;
+                `<h2 id="initTextP">${player.name}'s Turn.</h2>`
+                $("#initTextP").css("color", "blue")
         } else if (playerInitiative < monsterInitiative) {
-            player.endFirstAbility()
             turno = false;
+            player.endFirstAbility()
             setTimeout(() => {
                 $(".buttons").css("display", "none");
                 $("#endTurn").css("display", "flex");                
             }, 4000);
             
             bottomLog.innerHTML += 
-                `</br> ${arrMonster[level].name}'s Turn.`;
+                `</br> <h2 id="initTextM">${arrMonster[level].name}'s Turn.</h2>`;
+                $("#initTextM").css("color", "red")
         } else {
             rollForInitiative();
         }
@@ -226,6 +229,11 @@ function typeOfAttack(num) {
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
         setTimeout(() => {
+            $(`#monsterLogHP`).html(
+                arrMonster[level].hitPoints);
+        }, 2000);
+        // 4000
+        setTimeout(() => {
             $("#endTurn").css("display", "none");
             return nextEvent()
         }, 2500)
@@ -235,7 +243,7 @@ function typeOfAttack(num) {
         return setTimeout(() => {
             $(`#monsterLogHP`).html(
                 arrMonster[level].hitPoints);
-        }, 4000);
+        }, 2400);
         // 4000
     }
 };
@@ -243,7 +251,7 @@ function nextEvent(){
     setTimeout(() => {
         $(".monster").fadeOut();
         addMusic("triumph", false);
-    }, 2000);
+    }, 2100);
     setTimeout(() => {
         let randomPhraseTextScreen = Math.floor(Math.random() * 4) + 1;
         if (randomPhraseTextScreen == 1) {
@@ -307,7 +315,6 @@ function nextEvent(){
                 let randomizeItem = randomize(1, 11)
                 if (randomizeItem <= 2) {
                     bottomLog.innerHTML += 
-                        `<br/><span>You found a bag of gold.</span>`;
                     goldSFX.gold();
                 } else if (randomizeItem > 2 && randomizeItem <= 5) {
                     floorCollapseSFX.floorCollapse();
@@ -443,9 +450,9 @@ function endTurn() {
                 $("#points").html(
                     `You have reached level ${level}`
                     );
-            }, 4000);
+            }, 3000);
         }
-    }, 3000);
+    }, 2400);
 };
 
 function notYourTurn(x) {

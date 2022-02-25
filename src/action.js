@@ -6,7 +6,13 @@ const logD20 = document.getElementById("logD20");
 function attack(attacker, receiver, how){
     console.log(`${attacker.name} is trying to attack ${receiver.name}.`);
     nameAttacker.innerHTML = 
-        `<span>${attacker.name} is trying to attack ${receiver.name}.</span>`;
+        `<span><h3 id="tryingToAttk">${attacker.name} is trying to attack ${receiver.name}.</h3></span>`;
+        if(attacker == player){
+            $("#tryingToAttk").css("color", "blue")
+        } else {
+            $("#tryingToAttk").css("color", "red")
+        }
+        
 
     let attack = rollAttack(attacker);
 
@@ -84,7 +90,8 @@ function attack(attacker, receiver, how){
             return setTimeout(() => {
                 console.log(`${receiver.name} has died.`);
                 bottomLog.innerHTML +=
-                    `<br/><span>${receiver.name} has died.</span>`;
+                    `<br/><h1 id="deathLog">${receiver.name} has died.</h1>`;
+                    $("#deathLog").css("color", "red")
             }, 3000);
         } else{
             return setTimeout(() => {
@@ -96,7 +103,7 @@ function attack(attacker, receiver, how){
     } else{
         return setTimeout(() => {
             bottomLog.innerHTML += `<br/><h2 id="missAtk">Misses.</h2>`;
-            $("#missAtk").css("color", "red")
+            $("#missAtk").css("color", "dimgray")
             addMusic("miss", false);
             console.log("Misses!");
         }, 2000);
