@@ -182,6 +182,9 @@ class Players {
                             player.classResource);
                     }, 1500);
                     player.classResource -= 3
+                    if (player.classResource < 0){
+                        player.classResource = 0
+                    }
                     floatingText("-3","floatingTextClassResPlayer","cyan")
                     $(`.classRes`).effect("pulsate")
                     addMusic("warriorabilityone", false)
@@ -191,19 +194,19 @@ class Players {
                         $(".sword").effect("bounce")
                 } else if (rageUsed == 1){
                     bottomLog.innerHTML =
-                    `<br/><h3 id="abilityUse">Your eyes are sharpened!</h3>`;
+                    `<br/><h3 id="abilityUse">Your eyes are sharpened already.</h3>`;
                     $("#abilityUse").css("color", "red")
                     addMusic("abilityunavailable", false)
-                } else if (player.classResource <= 3){
+                } else if (player.classResource <= 2){
                     bottomLog.innerHTML =
-                    `<br/><h3 id="abilityUse">Out of rage!</h3>`;
+                    `<br/><h3 id="abilityUse">Out of mana.</h3>`;
                     $("#abilityUse").css("color", "red")
                     addMusic("abilityunavailable", false)
                 }
                 break;
 
             case "Rogue":
-                if (stealUsed == 0) {
+                if (stealUsed == 0 && player.classResource >= 3) {
                     bottomLog.innerHTML +=
                         `<br/><h4 id="abilityUse">While your enemy was distracted, you used Steal!</h4>`;
                     $(".card").effect("slide")
@@ -219,14 +222,17 @@ class Players {
                     $(`.classRes`).effect("pulsate")
                     stealUsed = 1
                     player.classResource -= 3
+                    if(player.classResource < 0){
+                        player.classResource = 0
+                    }
                 } else if (stealUsed == 1) {
                     bottomLog.innerHTML =
                         `<br/><h3 id="abilityUse">There's nothing to steal!</h3>`;
                     $("#abilityUse").css("color", "brown")    
                     addMusic("abilityunavailable", false)
-                } else if (player.classResource <= 0) {
-                    bottomLog.innerHTML +=
-                        `<br/><h3 id="abilityUse">Out of finesse!!</h3>`;
+                } else if (player.classResource <= 2) {
+                    bottomLog.innerHTML =
+                        `<br/><h3 id="abilityUse">Out of mana.</h3>`;
                         $("#abilityUse").css("color", "brown")
                         addMusic("abilityunavailable", false)
                 }
@@ -236,6 +242,9 @@ class Players {
                 if (player.classResource >= 3 && spellUsed == 0) {
                     spellUsed = 1
                     player.classResource -= 4
+                    if (player.classResource < 0){
+                        player.classResource = 0
+                    }
                     player.armorClass += 2
                     abilityTurnCounter += 1
                     setTimeout(() => {
@@ -261,9 +270,9 @@ class Players {
                         `<br/><h3 id="abilityUse">You can't reuse Arcane Shield until it dissipates!</h3>`;
                         $("#abilityUse").css("color", "purple",)
                         addMusic("abilityunavailable", false)
-                } else if (player.classResource <= 0) {
+                } else if (player.classResource <= 3) {
                     $("#abilityUse").css("color", "purple",)
-                    bottomLog.innerHTML = `<br/><h3 id="abilityUse">Out of Resources</h3>`;
+                    bottomLog.innerHTML = `<br/><h3 id="abilityUse">Out of Mana</h3>`;
                     addMusic("abilityunavailable", false)
                 }
                 break;
