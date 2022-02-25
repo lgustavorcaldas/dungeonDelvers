@@ -188,10 +188,12 @@ class Players {
                     bottomLog.innerHTML =
                     `<br/><h3 id="abilityUse">Your eyes are sharpened!</h3>`;
                     $("#abilityUse").css("color", "red")
+                    addMusic("abilityunavailable", false)
                 } else if (player.classResource <= 3){
                     bottomLog.innerHTML =
                     `<br/><h3 id="abilityUse">Out of rage!</h3>`;
                     $("#abilityUse").css("color", "red")
+                    addMusic("abilityunavailable", false)
                 }
                 break;
 
@@ -210,10 +212,12 @@ class Players {
                     bottomLog.innerHTML =
                         `<br/><h3 id="abilityUse">There's nothing to steal!</h3>`;
                     $("#abilityUse").css("color", "brown")    
+                    addMusic("abilityunavailable", false)
                 } else if (player.classResource <= 0) {
                     bottomLog.innerHTML +=
                         `<br/><h3 id="abilityUse">Out of finesse!!</h3>`;
                         $("#abilityUse").css("color", "brown")
+                        addMusic("abilityunavailable", false)
                 }
                 break;
 
@@ -237,11 +241,13 @@ class Players {
                     }, 5)
                 } else if (spellUsed == 1) {
                     bottomLog.innerHTML =
-                        `<br/><h3 id="abilityUse">You can't reuse Arcane Shield unit it dissipates!</h3>`;
+                        `<br/><h3 id="abilityUse">You can't reuse Arcane Shield until it dissipates!</h3>`;
                         $("#abilityUse").css("color", "purple",)
-                } else if (player.classResource <= 3) {
+                        addMusic("abilityunavailable", false)
+                } else if (player.classResource <= 0) {
                     $("#abilityUse").css("color", "purple",)
                     bottomLog.innerHTML = `<br/><h3 id="abilityUse">Out of Resources</h3>`;
+                    addMusic("abilityunavailable", false)
                 }
                 break;
 
