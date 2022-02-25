@@ -248,6 +248,7 @@ class Players {
                     }
                     player.armorClass += 2
                     abilityTurnCounter += 1
+                    console.log(abilityTurnCounter)
                     setTimeout(() => {
                         $("#logClassRes").html(
                             player.classResource);

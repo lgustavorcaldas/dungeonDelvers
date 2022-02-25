@@ -146,7 +146,7 @@ function rollForInitiative() {
     setTimeout(() => {
         if (playerInitiative > monsterInitiative) {
             turno = true;
-            player.endFirstAbility()
+            console.log(abilityTurnCounter)
             setTimeout(() => {
                 $(".buttons").css("display", "flex");
                 $("#endTurn").css("display", "none");          
@@ -158,6 +158,7 @@ function rollForInitiative() {
         } else if (playerInitiative < monsterInitiative) {
             turno = false;
             player.endFirstAbility()
+            console.log(abilityTurnCounter)
             setTimeout(() => {
                 $(".buttons").css("display", "none");
                 $("#endTurn").css("display", "flex");                
@@ -225,7 +226,7 @@ function typeOfAttack(num) {
         console.log(abilityTurnCounter)
         attack(player, arrMonster[level], "normal");
     }
-    player.endFirstAbility()
+    
 //Eventos quando um monstro é derrotado, trocando a tela, e trazendo o próximo monstro e as recompensas
     if (arrMonster[level].hitPoints <= 0) {
         setTimeout(() => {

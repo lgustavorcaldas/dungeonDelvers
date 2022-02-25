@@ -42,6 +42,8 @@ function attack(attacker, receiver, how){
             bottomLog.innerHTML +=
                 `<br/><span>HIT!! Doing ${attack.damage} damage to ${receiver.name}.</span>`; 
             if(attacker == player){
+                console.log(abilityTurnCounter)
+                player.endFirstAbility()
                 if(character == "Warrior"){
                     addMusic("warriorhit", false);
                 } else if(character == "Rogue"){
