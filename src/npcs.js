@@ -208,7 +208,7 @@ class Players {
             case "Rogue":
                 if (stealUsed == 0 && player.classResource >= 3) {
                     bottomLog.innerHTML =
-                        `<br/><h3 id="abilityUse">While your enemy was distracted, you stoled from it.</h3>`;
+                        `<br/><h3 id="abilityUse">While your target was distracted, you stoled from it.</h3>`;
                     $(".card").effect("slide")
                     $("#abilityUse").css("color", "brown")
                     addMusic("rogueabilityone", false)
